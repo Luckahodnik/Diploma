@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#E5E5E7;}
+	.st1{fill:#FFFFFF;stroke:#DAD7DC;stroke-miterlimit:10;}
+	.st2{fill:#D6B251;}
+	.st3{fill:#467080;}
+	.st4{fill:#FDD96F;}
+	.st5{fill:#CD5148;}
+	.st6{fill:#DAD7DC;}
+	.st7{fill:#48B19A;}
+	.st8{fill:#509FD7;}
+	.st9{fill:#DB584D;}
+</style>
+<path class="st0" d="M44.4,79.2L385.1,0.5L485,432.9l-340.8,78.7L44.4,79.2z"/>
+<path class="st1" d="M89.8,34.3h349.9v443.9H89.8L89.8,34.3z"/>
+<path class="st2" d="M173,67.7c-33.9,0-61.4,27.5-61.4,61.4c0,17,6.9,32.3,18,43.4l43.4-43.4V67.7z"/>
+<path class="st3" d="M234.4,129.1c0-33.9-27.5-61.4-61.4-61.4v61.4H234.4z"/>
+<path class="st4" d="M173,129.1l52.2,52.2c13.4-13.4,21.6-31.8,21.6-52.2H173z"/>
+<path class="st5" d="M129.6,172.5c11.1,11.1,26.5,18,43.4,18s32.3-6.9,43.4-18L173,129.1L129.6,172.5z"/>
+<g>
+	<path class="st6" d="M297.9,81.8h119.9v7.7H297.9V81.8z"/>
+	<path class="st6" d="M297.9,103.5h119.9v7.7H297.9V103.5z"/>
+	<path class="st6" d="M297.9,125.2h119.9v7.7H297.9V125.2z"/>
+	<path class="st6" d="M297.9,146.9h119.9v7.7H297.9V146.9z"/>
+	<path class="st6" d="M297.9,168.6h119.9v7.7H297.9V168.6z"/>
+</g>
+<g>
+	<path class="st7" d="M291.7,89.5h-7.8v-7.7h7.8V89.5z"/>
+	<path class="st7" d="M291.7,111.2h-7.8v-7.7h7.8V111.2z"/>
+	<path class="st7" d="M291.7,133h-7.8v-7.7h7.8V133z"/>
+	<path class="st7" d="M291.7,154.7h-7.8v-7.7h7.8V154.7z"/>
+	<path class="st7" d="M291.7,176.4h-7.8v-7.7h7.8V176.4z"/>
+</g>
+<path class="st8" d="M167.5,266.3h24.6v153.3h-24.6V266.3z"/>
+<path class="st9" d="M210,328.7h24.6v90.8H210V328.7z"/>
+<path class="st2" d="M252.4,292.4H277v127.1h-24.6V292.4z"/>
+<path class="st7" d="M294.9,231.3h24.6v188.2h-24.6V231.3z"/>
+<path class="st3" d="M337.3,313.2h24.6v106.4h-24.6L337.3,313.2z"/>
+</svg>
