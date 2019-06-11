@@ -34,7 +34,7 @@ var app = {
 			function (nfcEvent) {
 				var tag = nfcEvent.tag,
 					ndefMessage = tag.ndefMessage;
-	
+				alert(nfcEvent.tag);
 				// dump the raw json of the message
 				// note: real code will need to decode
 				// the payload from each record

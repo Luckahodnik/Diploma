@@ -123,6 +123,7 @@ var myLineChart = new Chart(ctx, {
     }
   }
 });
+
 function processXML(xmlDoc){
     let retObj = {};
 	let ss = xmlDoc.getElementsByTagName("payment_data");
@@ -191,3 +192,38 @@ function fileSelector(){
 	}
 	fileInputEl.addEventListener('change', handleFileSelect, false);
 }
+
+let maks = 0;
+let dict = {};
+let dictMesecev = new Array(12).fill(0);
+function aggregateByMonths(){
+    let month = new Array();
+    month[0] = "January";
+    month[1] = "February";
+    month[2] = "March";
+    month[3] = "April";
+    month[4] = "May";
+    month[5] = "June";
+    month[6] = "July";
+    month[7] = "August";
+    month[8] = "September";
+    month[9] = "October";
+    month[10] = "November";
+    month[11] = "December";
+    let sum = 0;
+    for(m in month){
+        dict[month[m]] = [];
+    }
+    for(let x in arrayPodatkov){
+        dict[month[arrayPodatkov[x].datum.getMonth()]].push(arrayPodatkov[x].znesek);
+        sum = dict[month[arrayPodatkov[x].datum.getMonth()]].reduce((previous, current) => current += previous);
+        dictMesecev[arrayPodatkov[x].datum.getMonth()] = sum;
+    }
+				for(x in dictMesecev){
+					if(dictMesecev[x] >= maks){
+									maks = dictMesecev[x];
+					}
+				}
+				chart.update();
+				//updateIzdatke();
+			}
