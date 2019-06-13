@@ -29,6 +29,7 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 
 // Area Chart Example
 var ctx = document.getElementById("myAreaChart");
+aggregateByMonths();
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
@@ -46,7 +47,7 @@ var myLineChart = new Chart(ctx, {
       pointHoverBorderColor: "rgba(78, 115, 223, 1)",
       pointHitRadius: 10,
       pointBorderWidth: 2,
-      data: [0, 12, 6,8,23,432,12,42,79,45,90,0],
+      data: dictMesecev,
     }],
   },
   options: {
@@ -71,9 +72,9 @@ var myLineChart = new Chart(ctx, {
       }],
       yAxes: [{
         ticks: {
+			beginAtZero: true,
           maxTicksLimit: 5,
           padding: 10,
-          // Include a dollar sign in the ticks
           callback: function(value, index, values) {
             return '€' + number_format(value);
           }
@@ -112,48 +113,5 @@ var myLineChart = new Chart(ctx, {
       }
     }
   }
+  
 });
-
-function fileSelector(){
-	const fileInputEl = document.getElementById('gumb');
-	console.log(fileInputEl);
-	function handleFileSelect(evt) {
-		evt.stopPropagation();
-		evt.preventDefault();
-
-		let files = [];
-
-		// file select input functionality
-		if (files.length <= 0){
-						files = this.files;
-		}
-
-		let output = [];
-		for (let i = 0, file; file = files[i]; i++) {
-			if(files[i].type == "text/xml"){
-				chart.update();
-				let reader = new FileReader();
-				let parser = new DOMParser();
-
-				reader.addEventListener('load', function(e) {
-					let xmlDoc = parser.parseFromString(e.target.result, "text/xml");
-					let returnedObject = processXML(xmlDoc);
-					$.post( "xml",
-									{'name' : returnedObject['name'],
-										'timestamp' : returnedObject['datum'].toISOString().slice(0, 10),
-										'amount' : returnedObject['znesek'],
-										'raw_xml_data' : e.target.result }
-					);
-					arrayPodatkov.push(returnedObject);
-
-					aggregateByMonths();
-					renderTable();
-					//renderCanvas();
-				});
-				reader.readAsText(file);
-				output.push(file);
-			}
-		}
-	}
-	fileInputEl.addEventListener('change', handleFileSelect, false);
-}

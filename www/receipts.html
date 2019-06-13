@@ -57,34 +57,18 @@
 			<i class="fas fa-home"></i>
         	<span>Domov</span></a>
       </li>
-
       <!-- Divider -->
       <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
+       <!-- Heading -->
+	   <div class="sidebar-heading">
         Vmesnik
-      </div>
-	  	  <li class="nav-item active">
-        	<a class="nav-link" href="receipts.html">
-			<i class="fas fa-receipt"></i>
-          	<span>Računi</span></a>
-      </li>
-     
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Podrobni podatki
       </div>
 
       <!-- Nav Item - Charts -->
-      <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Grafični prikaz</span></a>
+      <li class="nav-item active">
+		<a class="nav-link" href="receipts.html">
+			<i class="fas fa-fw fa-chart-area"></i>
+			<span>Računi</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
@@ -93,6 +77,7 @@
           <i class="fas fa-fw fa-table"></i>
           <span>Tabele</span></a>
       </li>
+
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -119,17 +104,7 @@
             <i class="fa fa-bars"></i>
           </button>
 
-          <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form>
+
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
@@ -164,22 +139,9 @@
 				</a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
-                </a>
-                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
+                  Izpiši se
                 </a>
               </div>
             </li>
@@ -279,26 +241,72 @@
             </div>
           </div>
 
-          <!-- Content Row -->
 
-          <div class="row">
-
+			<!-- Content Row -->
+			<div class="row">
 				<!-- Area Chart -->
-				<div class="col-lg-12 mb-4">
-				<div class="card shadow mb-4">
+				<div class="col-xl-12 col-lg-12 col-s-12">
+					<div class="card shadow mb-4">
 					<!-- Card Header - Dropdown -->
 					<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-					<h6 class="m-0 font-weight-bold text-primary">Pregled nad letnimi izdatki</h6>
+						<h6 class="m-0 font-weight-bold text-primary">Pregled nad izdatki</h6>
+						<div class="dropdown no-arrow">
+						<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+						</a>
+						<div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+							<div class="dropdown-header">Prikaz izdatkov:</div>
+							<a class="dropdown-item" href="#">Tedenski</a>
+							<a class="dropdown-item" href="#">Mesečni</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#">Letni</a>
+						</div>
+						</div>
 					</div>
 					<!-- Card Body -->
 					<div class="card-body">
-					<div class="chart-area">
-						<canvas id="myAreaChart"></canvas>
+						<div class="chart-area">
+							<canvas id="myAreaChart"></canvas>
+						</div>
 					</div>
 					</div>
 				</div>
+			  
+				  <!-- Bar Chart -->
+				<div class="col-xl-7 col-s-12">
+				<div class="card shadow mb-4">
+					<div class="card-header py-3">
+					  <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
+					</div>
+					<div class="card-body">
+					  <div class="chart-bar">
+						<canvas id="myBarChart"></canvas>
+					  </div>
+					  <hr>
+					  Styling for the bar chart can be found in the <code>/js/demo/chart-bar-demo.js</code> file.
+					</div>
+				  </div>
+	
 				</div>
-			</div>
+	
+				<!-- Donut Chart -->
+				<div class="col-xl-5 col-lg-5">
+				  <div class="card shadow mb-4">
+					<!-- Card Header - Dropdown -->
+					<div class="card-header py-3">
+					  <h6 class="m-0 font-weight-bold text-primary">Donut Chart</h6>
+					</div>
+					<!-- Card Body -->
+					<div class="card-body">
+					  <div class="chart-pie pt-4">
+						<canvas id="myPieChart"></canvas>
+					  </div>
+					  <hr>
+					  Styling for the donut chart can be found in the <code>/js/demo/chart-pie-demo.js</code> file.
+					</div>
+				  </div>
+				</div>
+			  </div>
 		  <!-- Modal -->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 			<div class="modal-dialog" role="document">
@@ -421,9 +429,12 @@
 
   <!-- Page level custom scripts -->
   <script type="text/javascript" src="js/receipts.js"></script>
+  <script type="text/javascript" src="js/demo/chart-area-demo.js"></script>
+  <script src="js/demo/chart-pie-demo.js"></script>
+  <script src="js/demo/chart-bar-demo.js"></script>
 
   <!-- Cordova scripts 
-  //<script type="text/javascript" src="cordova.js"></script>-->
+  <script type="text/javascript" src="cordova.js"></script>-->
   <script type="text/javascript" src="js/index.js"></script>
 
 </body>
