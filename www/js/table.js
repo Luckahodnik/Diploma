@@ -1,44 +1,39 @@
-function renderTable(){
-	const tabelaEl = document.getElementById('dataTable');
-const tbodyEl = tabelaEl.getElementsByTagName('tbody')[0];
-tbodyEl.innerHTML = "";
+function fileSelector(){
+	const fileInputEl = document.getElementById('file_input');
+	function handleFileSelect(evt) {
+		evt.stopPropagation();
+		evt.preventDefault();
 
-vsota = 0;
-arrayPodatkov.forEach(function(obj, idx){
-let trEl = document.createElement("tr");
-let tdZnesekEl = document.createElement("td");
-					let tdDatumEl  = document.createElement("td");
-					let tdNameEl  = document.createElement("td");
-					tdNameEl.innerText = obj["name"];
-tdZnesekEl.innerText = obj["znesek"];
-					tdDatumEl.innerText = obj["datum"].toLocaleDateString('en-GB');
-					trEl.appendChild(tdNameEl);
-tbodyEl.appendChild(trEl);
-trEl.appendChild(tdZnesekEl);
-tabelaEl.appendChild(trEl);
-trEl.appendChild(tdDatumEl);
-					tbodyEl.appendChild(trEl);
-vsota += obj["znesek"];
-});
-updateIzdatke();
+		let files = [];
+
+		// file select input functionality
+		if (files.length <= 0){
+			files = this.files;
+		}
+
+		let output = [];
+		for (let i = 0, file; file = files[i]; i++) {
+			if(files[i].type == "text/xml"){
+				let reader = new FileReader();
+
+				reader.addEventListener('load', function(e) {
+					let returnedObject = processXML(e.target.result);
+					/*$.post( "xml",
+									{'name' : returnedObject['name'],
+										'timestamp' : returnedObject['datum'].toISOString().slice(0, 10),
+										'amount' : returnedObject['znesek'],
+										'raw_xml_data' : e.target.result }
+					);*/
+					arrayPodatkov.push(returnedObject);
+
+					aggregateByMonths();
+					renderTable();
+				});
+				reader.readAsText(file);
+				output.push(file);
+			}
+		}
+	}
+	fileInputEl.addEventListener('change', handleFileSelect, false);
 }
 
-function updateTable(){
-	const vpisiEl = document.getElementById("ime_trg");
-	const spentEl = document.getElementById('znesek');
-const whenEl = document.getElementById('datum');
-
-	let racIn = spentEl.value;
-let datIn = whenEl.value;
-	let namIn = vpisiEl.value;
-if(!isNaN(racIn)){
-racIn = parseFloat(racIn);
-									datIn = new Date(datIn);
-if(datIn.getYear() == 119){
-let retObj = {"znesek":racIn, "datum":datIn, "name":namIn};
-									arrayPodatkov.push(retObj);
-aggregateByMonths();
-renderTable();
-}
-					}
-}

@@ -148,8 +148,8 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-          <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+          <h1 class="h3 mb-2 text-gray-800">Izdatki v tabelarični obliki</h1>
+          <p class="mb-4">Tukaj si lahko ogledate in urejate v tabelaričnem pogledu bolj podrobne podatke vaših računov</p>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
@@ -162,18 +162,17 @@
                   <thead>
                     <tr>
                       <th>Ime izdajatelja</th>
-                      <th>Znesek</th>
+					  <th>Celoten znesek računa</th>
+					  <th>DDV</th>
                       <th>Datum izdatka</th>
-                      <th>DDV</th>
-
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
 						<th>Ime izdajatelja</th>
-						<th>Znesek</th>
-						<th>Datum izdatka</th>
+						<th>Celoten znesek računa</th>
 						<th>DDV</th>
+						<th>Datum izdatka</th>
                     </tr>
                   </tfoot>
                   <tbody>
@@ -185,8 +184,81 @@
           </div>
 
         </div>
-        <!-- /.container-fluid -->
+		<!-- /.container-fluid -->
 
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLongTitle">Ročno vnesite podatke o izdatku</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			</div>
+			<div class="modal-body">
+				<form class="needs-validation" novalidate>
+					<div class="form-row">
+						<div class="col-md-6 mb-3">
+						<label for="validationTooltip03">Vnesi ime izdajatelja računa</label>
+						<input type="text" class="form-control" id="validationTooltip03" placeholder="Ime izdajatelja" required>
+						<div class="invalid-tooltip">
+							Prosim vnesi ime izajatelja računa!
+						</div>
+						</div>
+						<div class="col-md-6 mb-3">
+						<label for="validationTooltip04">Znesek izdatka</label>
+						<input type="text" class="form-control" id="validationTooltip04" placeholder="Znesek izdatka" required>
+							<div class="invalid-tooltip">
+								Prosim vnesi znesek izdatka!
+							</div>
+						</div>
+						<div class="col-md-6 mb-3">
+							<input type="date">
+						</div>
+
+					</div>
+					
+				</form>
+			</div>
+			<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Zapri</button>
+			<button type="button" class="btn btn-primary">Dodaj</button>
+			</div>
+		</div>
+		</div>
+		</div>
+
+          <!-- Content Row -->
+        <div class="row">
+
+            <!-- Content Column -->
+            <div class="col-lg-12 mb-4">
+					<a href="#" class="float gumb" id="menu-share">
+							<i class="fas fa-plus my-float"></i>
+					</a>
+					<ul class="list">
+						<li>
+							<a class="gumb" id="gumb" href="#">
+								<i class="fas fa-folder-open my-float" aria-hidden="true"></i>
+								<input id="file_input" accept="text/xml" type="file" class="custom-file-input" multiple>		
+							</a>
+						</li>
+						<li>
+							<a class="gumb"  href="#">
+								<i class="fas fa-file-invoice my-float"></i>
+							</a>
+						</li>
+						<li>
+							<a class="gumb" data-toggle="modal"  data-target="#myModal"  href="#">
+								<i class="fas fa-pen-square my-float"></i>
+							</a>
+						</li>
+						
+					</ul>
+         	 </div>
+
+        </div>
       </div>
       <!-- End of Main Content -->
 
@@ -235,7 +307,10 @@
   <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
   <!-- Page level custom scripts -->
+  <script type="text/javascript" src="js/receipts.js"></script>
+  <script type="text/javascript" src="js/table.js"></script>
   <script src="js/demo/datatables-demo.js"></script>
+
 
 </body>
 

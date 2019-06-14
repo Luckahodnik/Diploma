@@ -16,6 +16,8 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -28,7 +30,9 @@ var app = {
     // 'pause', 'resume', etc.
 	onDeviceReady: function() {
 		app.receivedEvent('deviceready');
-	
+
+
+	/*
 		// Read NDEF formatted NFC Tags
 		nfc.addNdefListener (
 			function (nfcEvent) {
@@ -50,7 +54,7 @@ var app = {
 			function (error) { // error callback
 				alert("Error adding NDEF listener " + JSON.stringify(error));
 			}
-		);
+		);*/
 	},
 
     // Update DOM on a Received Event
