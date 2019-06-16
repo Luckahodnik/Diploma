@@ -10,14 +10,14 @@
   <meta name="author" content="">
 
 
-  <title>E-arhiv</title>
+  <title>e-papir</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Fira+Mono&display=swap" rel="stylesheet">
   <!-- Custom styles for this template-->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="css/sb-admin-2.css" rel="stylesheet">
   <link href="css/mystyle.css" rel="stylesheet">
 
 </head>
@@ -25,16 +25,17 @@
 
   <!-- Page Wrapper -->
   <div id="wrapper">
+    <input type="checkbox" id="sidebar-checkbox" name="sidebar-checkbox"checked/>
 
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand align-items-center justify-content-center"  href="index.html">
         <div class="sidebar-brand-icon">
           <img id="logo" src="img/logo.svg"></img>
         </div>
-        <div class="sidebar-brand-text logo_ime">e-papir</div>
+        <div class="sidebar-brand-text logo_ime" >e-papir</div>
       </a>
 
       <!-- Divider -->
@@ -42,7 +43,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="#userDropdown">
 			<i class="fas fa-home"></i>
         	<span>Domov</span></a>
       </li>
@@ -58,16 +59,18 @@
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-		<a class="nav-link" href="receipts.html">
-			<i class="fas fa-fw fa-chart-area"></i>
-			<span>Računi</span></a>
+		  <a class="nav-link" href="#graph">
+        <i class="fas fa-fw fa-chart-area"></i>
+        <span>Računi</span>
+      </a>
       </li>
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="#tabel_start">
           <i class="fas fa-fw fa-table"></i>
-          <span>Tabele</span></a>
+          <span>Tabele</span>
+        </a>
       </li>
 
       <!-- Divider -->
@@ -75,7 +78,7 @@
 
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        <label class="rounded-circle border-0" id="sidebarToggle" for="sidebar-checkbox"></label>
       </div>
 
     </ul>
@@ -91,10 +94,9 @@
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
           <!-- Sidebar Toggle (Topbar) -->
-          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+          <label id="sidebarToggleTop" for="sidebar-checkbox" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
-          </button>
-
+          </label>
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
@@ -108,7 +110,7 @@
               <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                 <form class="form-inline mr-auto w-100 navbar-search">
                   <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2"/>
                     <div class="input-group-append">
                       <button class="btn btn-primary" type="button">
                         <i class="fas fa-search fa-sm"></i>
@@ -122,10 +124,10 @@
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-					<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					  <span class="mr-2 d-none d-lg-inline text-gray-600 small">John Doe</span>
-					  <img class="img-profile rounded-circle" src="img/user.png">
-			</a>
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">John Doe</span>
+                <img class="img-profile rounded-circle" src="img/user.png">
+              </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -136,86 +138,418 @@
             </li>
 
           </ul>
-		</nav>
+        </nav>
+
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="d-block w-100 present-image" style="background-image: url('img/prva.jpg')" alt="First slide"></div>
+                <div class="carousel-caption">
+                  <h5 class="desc">e-papir</h5>
+                  <p class="desc">Je aplikacija, ki vsaki fizični hrani izdane elektronske račune</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="d-block w-100 present-image" style="background-image: url('img/druga.jpg')" alt="Second slide"></div>
+                <div class="carousel-caption">
+                  <h5 class="desc">e-papir</h5>
+                  <p class="desc">Je aplikacija, ki vsaki fizični hrani izdane elektronske račune</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="d-block w-100 present-image" style="background-image: url('img/tretja.jpg')" alt="Third slide"></div>
+                <div class="carousel-caption">
+                  <h5 class="desc">e-papir</h5>
+                  <p class="desc">Je aplikacija, ki vsaki fizični hrani izdane elektronske račune</p>
+                </div>
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+
+        <div class="container">
+          <p id="main-desc">
+            Od zdaj naprej bo vaš postopek plačila izgledal tako:
+          </p>
+          <hr/>
+        </div>
+      
+        <!--cards with selections-->
+        <div class="container">
+          <div class="row">
+            <div class="col-sm">
+              <div class="card mb-4">
+                    <img class="ikone" src="img/pay.svg"/>
+                    <p id="ikone_naslov">1. Plačajte</p>
+              </div>
+            </div>
+            <div class="col-sm" >
+                <div class="card mb-4">
+                      <img class="ikone" src="img/terminal.svg"/>
+                      <p id="ikone_naslov">2. Prislonite telefon na terminal</p>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="card shadow mb-4">
+                    <a href="#graph">
+                      <img class="ikone" src="img/analytics.svg"/>
+                      <p id="ikone_naslov">3. Preglejte in urejajte svoje izdatke!</p>
+                  </a>
+                </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="parallax"></div>
+    
+
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4" id="graph">
+          <h1 class="h3 mb-0 text-gray-800">Izdatki v grafični obliki</h1>
+          <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generiraj poročilo izdatkov</a>
+        </div>
+
+        <!-- Content Row -->
+        <div class="row">
+
+          <!-- Earnings (Monthly) Card Example -->
+          <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Vsi vnešeni izdatki</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800"><p id="sum_znesek">0</p></div>
+                  </div>
+                  <div class="col-auto">
+                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Earnings (Monthly) Card Example -->
+          <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Maksimalen izdatek</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800"><p id="maks_sum">0</p></div>
+                  </div>
+                  <div class="col-auto">
+                    <i class="fas fa-euro-sign fa-2x text-gray-300"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Earnings (Monthly) Card Example -->
+          <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Minimalen izdatek</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800"><p id="min_sum">0</p></div>
+                  </div>
+                  <div class="col-auto">
+                    <i class="fas fa-euro-sign fa-2x text-gray-300"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pending Requests Card Example -->
+          <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Število dodanih računov</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800"><p id="st_rac">0</p></div>
+                  </div>
+                  <div class="col-auto">
+                    <i class="fas fa-receipt fa-2x text-gray-300"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
 
 
+        <!-- Content Row -->
+        <div class="row">
+          <!-- Area Chart -->
+          <div class="col-xl-12 col-lg-12 col-s-12">
+            <div class="card shadow mb-4">
+              <!-- Card Header - Dropdown -->
+              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Pregled nad izdatki</h6>
+                <div class="dropdown no-arrow">
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                  <div class="dropdown-header">Prikaz izdatkov:</div>
+                  <a class="dropdown-item" href="#">Tedenski</a>
+                  <a class="dropdown-item" href="#">Mesečni</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Letni</a>
+                </div>
+                </div>
+              </div>
+              <!-- Card Body -->
+              <div class="card-body">
+                <div class="chart-area">
+                  <canvas id="myAreaChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Bar Chart -->
+          <div class="col-xl-7 col-s-12">
+            <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">DVV vseh zdatkov po mesecih</h6>
+              </div>
+              <div class="card-body">
+                <div class="chart-bar">
+                <canvas id="myBarChart"></canvas>
+                </div>					  
+              </div>
+            </div>
 
-		<div class="container">
-			<p align="center">Aplikacija E-račun je narejena, da hrani vse vaše elektronske račune.
-				Od zdaj naprej bo vaš postopek plačila izgledal tako:
+          </div>
 
-			</p>
-		</div>
-		
-		<!--cards with selections-->
-		<div class="container">
-			<div class="row">
-					<div class="col-sm">
-						<div class="card mb-4">
-									<img class="ikone" src="img/pay.svg"/>
-									<p id="ikone_naslov">1. Plačajte</p>
-						</div>
-					</div>
-					<div class="col-sm" >
-							<div class="card mb-4">
-										<img class="ikone" src="img/terminal.svg"/>
-										<p id="ikone_naslov">2. Prislonite telefon na terminal</p>
-							</div>
-					</div>
-					<div class="col-sm">
-							<div class="card shadow mb-4">
-									<a href="receipts.html">
-										<img class="ikone" src="img/analytics.svg"/>
-										<p id="ikone_naslov">3. Preglejte in urejajte svoje izdatke!</p>
-								</a>
-							</div>
-					</div>
-			</div>
-	</div>
+          <!-- Donut Chart -->
+          <div class="col-xl-5 col-lg-5">
+            <div class="card shadow mb-4">
+              <!-- Card Header - Dropdown -->
+              <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Prikaz kje so bile transakcije opravljene</h6>
+              </div>
+              <!-- Card Body -->
+              <div class="card-body">
+                <div class="chart-pie pt-4">
+                  <canvas id="myPieChart"></canvas>
+                </div>
+                <hr/>
+                Graf v tortni obliki prikazuje imena trgovin v katerih ste opravili transakcije.
+              </div>
+            </div>
+          </div>
+        </div>
 
 
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800" id="tabel_start">Izdatki v tabelarični obliki</h1>
+        <p class="mb-4">Tukaj si lahko ogledate in urejate v tabelaričnem pogledu bolj podrobne podatke vaših računov</p>
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Tabela izdatkov</h6>
+          </div>
+          <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+              <th>Ime izdajatelja</th>
+              <th>Celoten znesek računa</th>
+              <th>DDV</th>
+              <th>Datum izdatka</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>Ime izdajatelja</th>
+                <th>Celoten znesek računa</th>
+                <th>DDV</th>
+                <th>Datum izdatka</th>
+              </tr>
+            </tfoot>
+            <tbody>
+              <tr>
+                  <td>Mercator</td>
+                  <td>120€</td>
+                  <td>12€</td>
+                  <td>12/6/2019</td>
+                </tr>
+            </tbody>
+            </table>
+          </div>
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Ročno vnesite podatke o izdatku</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form class="needs-validation">
+                  <div class="form-row">
+                    <div class="col-md-7 mb-3">
+                    <label for="validationTooltip01">Vnesite ime izdajatelja računa</label>
+                    <input type="text" value="Get set" class="form-control" id="validationTooltip01" placeholder="Ime izdajatelja" required>
+                    <div class="valid-tooltip">
+                        Looks good!
+                    </div>
+                    </div>
+                    <div class="col-md-7 mb-3">
+                    <label for="znesek">Vnesite nesek celotnega izdatka</label>
+                    <input type="text" class="form-control" id="znesek" placeholder="Znesek izdatka" required>
+                      <div class="invalid-tooltip">
+                        Prosim vnesi znesek izdatka!
+                      </div>
+                    </div>
+                    <div class="col-md-7 mb-3">
+                        <label for="vn_ddv">Vnesi znesek DDV</label>
+                        <input type="text" class="form-control" id="vn_ddv" placeholder="Znesek DDV" required>
+                          <div class="invalid-tooltip">
+                            Prosim vnesi DDV izdatka!
+                          </div>
+                        </div>
+                    <div class="col-md-7 mb-3">
+                      <label for="datum">Vnesi datum izdatka</label>
+                      <input id="datum" class="form-control" type="date">
+                    </div>
+
+                  </div>
+                  
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zapri</button>
+                <button class="btn btn-primary" type="submit">Submit form</button>
+                <button type="button" class="btn btn-secondary" id="dodaj" data-dismiss="modal">Dodaj</button>
+              </div>
+              </div>
+            </div>
+        </div>
+
+        <!-- Content Row -->
+        <div class="row">
+
+          <!-- Content Column -->
+          <div class="col-lg-12 mb-4">
+            <a href="#" class="float gumb" id="menu-share">
+                <i class="fas fa-plus my-float"></i>
+            </a>
+            <ul class="list">
+              <li>
+                <a class="gumb" id="gumb" href="#">
+                  <i class="fas fa-folder-open my-float" aria-hidden="true"></i>
+                  <input id="file_input" accept="text/xml" type="file" class="custom-file-input" multiple>		
+                </a>
+              </li>
+              <li>
+                <a class="gumb"  href="#">
+                  <i class="fas fa-file-invoice my-float"></i>
+                </a>
+              </li>
+              <li>
+                <a class="gumb" data-toggle="modal"  data-target="#myModal"  href="#">
+                  <i class="fas fa-pen-square my-float"></i>
+                </a>
+              </li>
+              
+            </ul>
+          </div>
+        </div>
+  <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
 
     </div>
-    <!-- End of Content Wrapper -->
 
-  </div>
-  <!-- End of Page Wrapper -->
-
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
         </div>
       </div>
     </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.js"></script>
+    <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script type="text/javascript" src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/chart.js/Chart.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script type="text/javascript" src="js/receipts.js"></script>
+    <script src="js/demo/datatables-demo.js"></script>
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script>
+    <script src="js/demo/chart-bar-demo.js"></script>
+
+    <!-- Cordova scripts 
+    <script type="text/javascript" src="cordova.js"></script>-->
+    <script type="text/javascript" src="js/index.js"></script>
+
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function() {
+          'use strict';
+          window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+              form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                  event.preventDefault();
+                  event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+              }, false);
+            });
+          }, false);
+        })();
+        </script>
   </div>
-
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
-  <script src="js/index.js"></script>
-
 </body>
-
 </html>
