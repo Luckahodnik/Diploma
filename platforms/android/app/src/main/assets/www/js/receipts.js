@@ -3,8 +3,13 @@ let arrayPodatkov = [];
 var chart = null;
 $(document).ready(function() {
 	fileSelector();	
+	updateOnKeypress();
+
 	$('#myModal').on('shown.bs.modal', function () {
 		$('#myInput').trigger('focus')
+	})
+	$('.carousel').carousel({
+		interval: 8000
 	})
   });
 
@@ -112,6 +117,35 @@ function processXML(xmlStr){
 	return retObj;
 } 
 
+function renderTable(){
+	const tabelaEl = document.getElementById('dataTable');
+	const tbodyEl = tabelaEl.getElementsByTagName('tbody')[0];
+	tbodyEl.innerHTML = "";
+	vsota = 0;
+	arrayPodatkov.forEach(function(obj, idx){
+		let trEl = document.createElement("tr");
+		let tdZnesekEl = document.createElement("td");
+		let tdDatumEl  = document.createElement("td");
+		let tdDdvEl  = document.createElement("td");
+		let tdNameEl  = document.createElement("td");
+		tdNameEl.innerText = obj["name"];
+		tdZnesekEl.innerText = obj["znesek"];
+		tdDdvEl.innerText = obj["ddv"];
+		tdDatumEl.innerText = obj["datum"].toLocaleDateString('en-GB');
+			trEl.appendChild(tdNameEl);
+			tbodyEl.appendChild(trEl);
+			trEl.appendChild(tdZnesekEl);
+			tabelaEl.appendChild(trEl);
+			trEl.appendChild(tdDdvEl);
+			tbodyEl.appendChild(trEl);
+			trEl.appendChild(tdDatumEl);
+			tbodyEl.appendChild(trEl);
+			vsota += obj["znesek"];
+	});
+	updateIzdatke();
+	myLineChart.update();
+}
+
 function updateIzdatke(){
 	const maksEl = document.getElementById("maks_sum");
 	maksEl.innerHTML = parseInt(maks).toFixed(2) + "€";
@@ -120,6 +154,54 @@ function updateIzdatke(){
 	const stEl = document.getElementById("st_rac");
 	stEl.innerHTML = arrayPodatkov.length;
 }  
+
+function updateTable(){
+	const vpisiEl = document.getElementById("validationTooltip01");
+	const spentEl = document.getElementById('znesek');
+	const ddvEl = document.getElementById('vn_ddv');
+	const whenEl = document.getElementById('datum');
+	
+
+	let racIn = spentEl.value;
+	let datIn = whenEl.value;
+	let ddvIn = ddvEl.value;
+	let namIn = vpisiEl.value;
+	if(!isNaN(racIn)){
+	racIn = parseFloat(racIn);
+	ddvIn = parseFloat(ddvIn)
+	datIn = new Date(datIn);
+		if(datIn.getYear() == 119){
+		let retObj = {"znesek":racIn, "ddv":ddvIn, "datum":datIn, "name":namIn};
+			arrayPodatkov.push(retObj);
+			aggregateByMonths();
+			renderTable();
+		}
+	}
+}
+
+function updateOnKeypress(){
+	//const vpisiEl = document.getElementById("validationTooltip01");
+	const spentEl = document.getElementById('znesek');
+	const ddvEl = document.getElementById('vn_ddv');
+	const whenEl = document.getElementById('datum');
+	const submitEl = document.getElementById('dodaj');
+
+	let funcOnKeypress = function(e) {
+	e.stopPropagation();
+	let key = e.which || e.keyCode;
+		if (key == 13) {
+			updateTable();
+		}
+	}
+
+	submitEl.onclick = updateTable;
+	spentEl.addEventListener('keypress', funcOnKeypress);
+	whenEl.addEventListener('keypress', funcOnKeypress);
+	vpisiEl.addEventListener('keypress', funcOnKeypress);
+	ddvEl.addEventListener('keypress', funcOnKeypress);
+	
+//document.getElementById("delete").onclick = deleteFromTable;
+}
 
 let maks = 0;
 let dict = {};
@@ -153,53 +235,6 @@ function aggregateByMonths(){
 			}
 		}
 		updateIzdatke();
-	}
-
-	function renderTable(){
-		const tabelaEl = document.getElementById('dataTable');
-		const tbodyEl = tabelaEl.getElementsByTagName('tbody')[0];
-		tbodyEl.innerHTML = "";
-		vsota = 0;
-		arrayPodatkov.forEach(function(obj, idx){
-			let trEl = document.createElement("tr");
-			let tdZnesekEl = document.createElement("td");
-			let tdDatumEl  = document.createElement("td");
-			let tdDdvEl  = document.createElement("td");
-			let tdNameEl  = document.createElement("td");
-			tdNameEl.innerText = obj["name"];
-			tdZnesekEl.innerText = obj["znesek"];
-			tdDdvEl.innerText = obj["ddv"];
-			tdDatumEl.innerText = obj["datum"].toLocaleDateString('en-GB');
-				trEl.appendChild(tdNameEl);
-				tbodyEl.appendChild(trEl);
-				trEl.appendChild(tdZnesekEl);
-				tabelaEl.appendChild(trEl);
-				trEl.appendChild(tdDdvEl);
-				tbodyEl.appendChild(trEl);
-				trEl.appendChild(tdDatumEl);
-				tbodyEl.appendChild(trEl);
-				vsota += obj["znesek"];
-		});
-	}
-
-	function updateTable(){
-		const vpisiEl = document.getElementById("ime_trg");
-		const spentEl = document.getElementById('znesek');
-		const whenEl = document.getElementById('datum');
-
-		let racIn = spentEl.value;
-		let datIn = whenEl.value;
-		let namIn = vpisiEl.value;
-		if(!isNaN(racIn)){
-			racIn = parseFloat(racIn);
-			datIn = new Date(datIn);
-		if(datIn.getYear() == 119){
-			let retObj = {"znesek":racIn, "datum":datIn, "name":namIn};
-			arrayPodatkov.push(retObj);
-			aggregateByMonths();
-			renderTable();
-						}
-					}
 	}
 
 	// Area Chart Example

@@ -173,3 +173,50 @@ a#menu-share:hover > i{
 	color:white;
 }
 
+#main-desc{
+	text-align: center;
+}
+
+.present-image{
+	height:500px;
+	filter: brightness(70%);
+	background-size: cover;
+}
+
+#sidebar-checkbox{
+	display: none;
+}
+
+.sidebar, #content-wrapper{
+	-webkit-transition: width 0.5s, margin-left 0.5s; /* Safari prior 6.1 */
+	transition: width 0.5s, margin-left 0.5s;
+}
+
+.parallax { 
+  /* The image used */
+  background-image: url("/www/img/4324.jpg");
+
+  /* Set a specific height */
+  height: 500px; 
+  margin-top:50px;
+  margin-bottom:50px;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.carousel{
+	margin-bottom: 50px;
+}
+
+.accordion{
+	position:fixed;
+	z-index: 5;
+}
+
+#dataTable_paginate{
+	float:right;
+}
