@@ -1,1 +1,0 @@
-../../node_modules/bootstrap-validator/js/validator.js

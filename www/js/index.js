@@ -32,7 +32,7 @@ var app = {
 		app.receivedEvent('deviceready');
 
 
-	/*
+	
 		// Read NDEF formatted NFC Tags
 		nfc.addNdefListener (
 			function (nfcEvent) {
@@ -54,7 +54,7 @@ var app = {
 			function (error) { // error callback
 				alert("Error adding NDEF listener " + JSON.stringify(error));
 			}
-		);*/
+		);
 	},
 
     // Update DOM on a Received Event

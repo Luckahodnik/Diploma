@@ -5,15 +5,17 @@
 	padding:0px;
 	margin:0px;
 }
-.sidebar.toggled .sidebar-brand {
-    height: 4.4rem !important;
-  }
+
 
 @media (min-width: 768px) {
 	.sidebar .sidebar-brand{
-	height: 9.4rem !important;
+		height: 9rem !important;
+	}
+	#sidebar-checkbox:checked ~ .sidebar .sidebar-brand{
+		height: 4.5rem !important;
 	}
 }
+
 
 .logo_ime{
 	font-family: 'Fira Mono', monospace;
@@ -23,12 +25,14 @@
 }
 
 .ikone{
-	margin:20px;
+	text-align: center;
+	width:10vw;
+	margin:30px;
 }
 
 #ikone_naslov{
 	text-align: center;
-	font-size: 1.3em;
+	font-size: 1em;
 }
 
 .label-container{
@@ -89,7 +93,7 @@
 	bottom:40px;
 	right:40px;
 	background-color:rgb(36, 151, 126);
-	color:#FFF;
+	color:#FFF !important;
 	border-radius:50px;
 	text-align:center;
 	box-shadow: 2px 2px 3px #999;
@@ -112,7 +116,7 @@
 
 .list li a{
 	background-color:#4e73df;
-	color:#FFF;
+	color:#FFF !important;
 	border-radius:50px;
 	text-align:center;
 	box-shadow: 2px 2px 3px #999;
@@ -187,14 +191,9 @@ a#menu-share:hover > i{
 	display: none;
 }
 
-.sidebar, #content-wrapper{
-	-webkit-transition: width 0.5s, margin-left 0.5s; /* Safari prior 6.1 */
-	transition: width 0.5s, margin-left 0.5s;
-}
-
 .parallax { 
   /* The image used */
-  background-image: url("/www/img/4324.jpg");
+  background-image: url("../img/4324.jpg");
 
   /* Set a specific height */
   height: 500px; 
@@ -212,11 +211,25 @@ a#menu-share:hover > i{
 	margin-bottom: 50px;
 }
 
-.accordion{
+#accordionSidebar{
 	position:fixed;
-	z-index: 5;
+	z-index: 1000;
 }
 
 #dataTable_paginate{
 	float:right;
 }
+
+.navbar{
+	position: fixed;
+	z-index: 900;
+	float:right;
+	width:100vw;
+	top:0px;
+	left:0px;
+}
+
+#tabla_izdatkov{
+	margin-top:50px;
+}
+
