@@ -210,7 +210,7 @@
             <div class="col-sm">
                 <div class="card shadow mb-4">
                     <a href="#graph" style="text-align: center">
-                      <img class="ikone" src="img/analytics.svg"/>
+                      <img class="ikone" src="img/analyse.svg"/>
                       <p id="ikone_naslov">3. Preglejte in urejajte svoje izdatke!</p>
                     </a>
                 </div>
@@ -247,14 +247,14 @@
             </div>
           </div>
 
-          <!-- Output withoud DDV -->
+          <!-- Output sum of DDV -->
           <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
+            <div class="card border-left-info shadow h-100 py-2">
               <div class="card-body">
                 <div class="row no-gutters align-items-center">
                   <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Vsi vnešeni izdatki(brez DDV)</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800"><p id="min_sum">0</p></div>
+                    <div class="text-xs font-weight-bold text-cyan text-uppercase mb-1">DVV vseh računov</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800"><p id="sum_ddv">0</p></div>
                   </div>
                   <div class="col-auto">
                     <i class="fas fa-euro-sign fa-2x text-gray-300"></i>
@@ -481,11 +481,8 @@
 
     <!-- Page level custom scripts -->
     <script type="text/javascript" src="js/receipts.js"></script>
-    <script src="js/demo/datatables-demo.js"></script>
     <script src="vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
- 
     <script src="vendor/validator/validator.min.js"></script>
 
     <!-- Cordova scripts 

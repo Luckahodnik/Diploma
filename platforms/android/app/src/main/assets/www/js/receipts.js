@@ -1,4 +1,5 @@
 let vsota = 0;
+let vsotaDDV = 0;
 let arrayPodatkov = [];
 var chart = null;
 $(document).ready(function () {
@@ -19,7 +20,7 @@ $(document).ready(function () {
 			$("#myModal").modal("hide");
 		}
 	})
-
+	$('#dataTable').DataTable();
 });
 
 function fileSelector() {
@@ -64,29 +65,6 @@ function fileSelector() {
 }
 
 
-function number_format(number, decimals, dec_point, thousands_sep) {
-	number = (number + '').replace(',', '').replace(' ', '');
-	var n = !isFinite(+number) ? 0 : +number,
-		prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
-		sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
-		dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
-		s = '',
-		toFixedFix = function (n, prec) {
-			var k = Math.pow(10, prec);
-			return '' + Math.round(n * k) / k;
-		};
-	s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
-	if (s[0].length > 3) {
-		s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
-	}
-	if ((s[1] || '').length < prec) {
-		s[1] = s[1] || '';
-		s[1] += new Array(prec - s[1].length + 1).join('0');
-	}
-	return s.join(dec);
-}
-
-
 function processXML(xmlStr) {
 	let parser = new DOMParser();
 	let xmlRep = xmlStr.replace(/xmlns(:.+)?=".+"/g, '');
@@ -110,14 +88,14 @@ function processXML(xmlStr) {
 	}
 
 	if (ddv.stringValue != null) {
-		retObj["ddv"] = ddv.stringValue;
+		retObj["ddv"] = parseInt(ddv.stringValue);
 	}
 
 	if (datum.stringValue != null) {
 		retObj["datum"] = new Date(datum.stringValue);
 	}
+	vsotaDDV += retObj["ddv"];
 	vsota += retObj["znesek"];
-	console.log(retObj);
 	return retObj;
 }
 
@@ -126,6 +104,7 @@ function renderTable() {
 	const tbodyEl = tabelaEl.getElementsByTagName('tbody')[0];
 	tbodyEl.innerHTML = "";
 	vsota = 0;
+	vsotaDDV = 0;
 	arrayPodatkov.forEach(function (obj, idx) {
 		let trEl = document.createElement("tr");
 		let tdZnesekEl = document.createElement("td");
@@ -145,6 +124,7 @@ function renderTable() {
 		trEl.appendChild(tdDatumEl);
 		tbodyEl.appendChild(trEl);
 		vsota += obj["znesek"];
+		vsotaDDV += obj["ddv"];
 	});
 	updateIzdatke();
 	myLineChart.update();
@@ -155,6 +135,8 @@ function updateIzdatke() {
 	maksEl.innerHTML = parseInt(maks).toFixed(2) + "€";
 	const vpisiEl = document.getElementById("sum_znesek");
 	vpisiEl.innerHTML = vsota.toFixed(2) + "€";
+	const ddvEl = document.getElementById("sum_ddv");
+	ddvEl.innerHTML = vsotaDDV.toFixed(2) + "€";
 	const stEl = document.getElementById("st_rac");
 	stEl.innerHTML = arrayPodatkov.length;
 }
@@ -229,9 +211,11 @@ function aggregateByMonths() {
 		dict[month[m]] = [];
 	}
 	for (let x in arrayPodatkov) {
+		if(!(arrayPodatkov[x].ime in arrayPodatkov)){
 		dict[month[arrayPodatkov[x].datum.getMonth()]].push(arrayPodatkov[x].znesek);
 		sum = dict[month[arrayPodatkov[x].datum.getMonth()]].reduce((previous, current) => current += previous);
 		dictMesecev[arrayPodatkov[x].datum.getMonth()] = sum;
+		}
 	}
 	for (x in dictMesecev) {
 		if (dictMesecev[x] >= maks) {
@@ -239,6 +223,29 @@ function aggregateByMonths() {
 		}
 	}
 	updateIzdatke();
+}
+
+
+function number_format(number, decimals, dec_point, thousands_sep) {
+	number = (number + '').replace(',', '').replace(' ', '');
+	var n = !isFinite(+number) ? 0 : +number,
+		prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+		sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+		dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+		s = '',
+		toFixedFix = function (n, prec) {
+			var k = Math.pow(10, prec);
+			return '' + Math.round(n * k) / k;
+		};
+	s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+	if (s[0].length > 3) {
+		s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+	}
+	if ((s[1] || '').length < prec) {
+		s[1] = s[1] || '';
+		s[1] += new Array(prec - s[1].length + 1).join('0');
+	}
+	return s.join(dec);
 }
 
 // Area Chart Example

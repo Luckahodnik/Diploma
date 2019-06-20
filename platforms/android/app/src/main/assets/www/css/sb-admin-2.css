@@ -10374,6 +10374,10 @@ button.bg-dark:focus {
   color: #4e73df !important;
 }
 
+.text-cyan{
+  color: #36b9cc !important;
+}
+
 a.text-primary:hover, a.text-primary:focus {
   color: #224abe !important;
 }
