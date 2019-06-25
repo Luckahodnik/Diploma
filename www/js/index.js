@@ -55,6 +55,8 @@ var app = {
 				alert("Error adding NDEF listener " + JSON.stringify(error));
 			}
 		);
+
+		
 	},
 
     // Update DOM on a Received Event

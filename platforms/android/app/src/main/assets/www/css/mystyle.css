@@ -16,7 +16,15 @@
 	}
 }
 
-
+#graph{
+	height:100px;
+}
+#tabla_izdatkov{
+	height:50px;
+}
+#prostor{
+	height:20px;
+}
 .logo_ime{
 	font-family: 'Fira Mono', monospace;
 	font-size:1em;

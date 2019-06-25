@@ -15,8 +15,25 @@
 		height: 4.5rem !important;
 	}
 }
+.bg-register-image {
+	background-image: url("../img/photo-1513836279014-a89f7a76ae86.jpeg");
 
 
+}
+.bg-login-image{
+	background-image: url("../img/photo-1513836279014-a89f7a76ae86.jpeg");
+
+}
+
+#graph{
+	height:100px;
+}
+#tabla_izdatkov{
+	height:50px;
+}
+#prostor{
+	height:20px;
+}
 .logo_ime{
 	font-family: 'Fira Mono', monospace;
 	font-size:1em;
@@ -193,10 +210,10 @@ a#menu-share:hover > i{
 
 .parallax { 
   /* The image used */
-  background-image: url("../img/4324.jpg");
+  background-image: url("../img/parallax.jpg");
 
   /* Set a specific height */
-  height: 500px; 
+  height: 700px; 
   margin-top:50px;
   margin-bottom:50px;
 
