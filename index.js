@@ -20,6 +20,7 @@ app.use(express.urlencoded({extended: true}));
 db.authenticate()
   .then(() => {
     console.log('Connection has been established successfully.');
+    
     /*var upIme = "Hijena";
     hash.update(upIme.toLowerCase());
     
@@ -50,6 +51,10 @@ app.get('/', function (req, res) {
 app.post('/register', function(req, res) {
   console.log(req.body);
   console.log(req.files);
+  res.send("ALL OK!");
+});
+app.post('/login', function(req, res) {
+  console.log(req.body);
   res.send("ALL OK!");
 });
 

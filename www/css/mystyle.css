@@ -5,9 +5,56 @@
 	padding:0px;
 	margin:0px;
 }
+.ikone{
+	text-align: center;
+	width:35vw;
+	margin:20px;
+}
 
+#ikone_naslov{
+	text-align: center;
+	font-size: 1em;
+}
+
+.bg-login-image::before, .bg-register-image::before {
+	content: "";
+	opacity: 0.1;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	position: absolute;
+	z-index: -1;
+}
+
+.bg-login-image::before {
+	background-image: url("../img/photo-1513836279014-a89f7a76ae86.jpeg");
+}
+.bg-register-image::before {
+  background-image: url("../img/photo-1513836279014-a89f7a76ae86.jpeg");
+}
 
 @media (min-width: 768px) {
+	#graph{
+		height:100px;
+	}
+	#tabla_izdatkov{
+		height:50px;
+	}
+	#prostor{
+		height:20px;
+	}
+	.ikone{
+		text-align: center;
+		width:10vw;
+		margin:30px;
+	}
+	
+	#ikone_naslov{
+		text-align: center;
+		font-size: 1em;
+	}
+
 	.sidebar .sidebar-brand{
 		height: 9rem !important;
 	}
@@ -15,25 +62,12 @@
 		height: 4.5rem !important;
 	}
 }
-.bg-register-image {
-	background-image: url("../img/photo-1513836279014-a89f7a76ae86.jpeg");
+
+.bg-register-image, .bg-login-image {
+	z-index: 0;
+}
 
 
-}
-.bg-login-image{
-	background-image: url("../img/photo-1513836279014-a89f7a76ae86.jpeg");
-
-}
-
-#graph{
-	height:100px;
-}
-#tabla_izdatkov{
-	height:50px;
-}
-#prostor{
-	height:20px;
-}
 .logo_ime{
 	font-family: 'Fira Mono', monospace;
 	font-size:1em;
@@ -41,16 +75,7 @@
 	color:#ffffff;
 }
 
-.ikone{
-	text-align: center;
-	width:10vw;
-	margin:30px;
-}
 
-#ikone_naslov{
-	text-align: center;
-	font-size: 1em;
-}
 
 .label-container{
 	position:fixed;

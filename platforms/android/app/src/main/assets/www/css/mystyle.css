@@ -5,15 +5,44 @@
 	padding:0px;
 	margin:0px;
 }
+.ikone{
+	text-align: center;
+	width:35vw;
+	margin:20px;
+}
 
+#ikone_naslov{
+	text-align: center;
+	font-size: 1em;
+}
 
 @media (min-width: 768px) {
+	.ikone{
+		text-align: center;
+		width:14vw;
+		margin:30px;
+	}
+	
+	#ikone_naslov{
+		text-align: center;
+		font-size: 1em;
+	}
+
 	.sidebar .sidebar-brand{
 		height: 9rem !important;
 	}
 	#sidebar-checkbox:checked ~ .sidebar .sidebar-brand{
 		height: 4.5rem !important;
 	}
+}
+.bg-register-image {
+	background-image: url("../img/photo-1513836279014-a89f7a76ae86.jpeg");
+
+
+}
+.bg-login-image{
+	background-image: url("../img/photo-1513836279014-a89f7a76ae86.jpeg");
+
 }
 
 #graph{
@@ -32,16 +61,7 @@
 	color:#ffffff;
 }
 
-.ikone{
-	text-align: center;
-	width:10vw;
-	margin:30px;
-}
 
-#ikone_naslov{
-	text-align: center;
-	font-size: 1em;
-}
 
 .label-container{
 	position:fixed;
@@ -201,10 +221,10 @@ a#menu-share:hover > i{
 
 .parallax { 
   /* The image used */
-  background-image: url("../img/4324.jpg");
+  background-image: url("../img/parallax.jpg");
 
   /* Set a specific height */
-  height: 500px; 
+  height: 700px; 
   margin-top:50px;
   margin-bottom:50px;
 
