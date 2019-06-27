@@ -12,8 +12,10 @@ $( document ).ready(function() {
         let postObject = {};
         inputs.each(function( index ) {
             if($(this).attr('type') == 'file'){
-                console.log(this.files);
                 postObject[$(this).attr('id')] = $(this)[0].files[0];
+            } 
+            else if($(this).attr('type') == 'checkbox'){
+                postObject[$(this).attr('id')] = $(this).prop('checked');
             } else {
                 postObject[$(this).attr('id')] = $(this).val();
             }
