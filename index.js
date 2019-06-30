@@ -9,15 +9,12 @@ const db = require('./config/database.js');
 const Racun = require('./models/Racun.js');
 const Uporabnik = require('./models/Uporabnik.js');
 const fileUpload = require('express-fileupload');
-//console.log(models);
-
 const crypto = require('crypto');
 const hash = crypto.createHash('sha256');
+const compose = require('docker-compose');
 
-app.use(fileUpload());
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-db.authenticate()
+function authDB(){
+  db.authenticate()
   .then(() => {
     console.log('Connection has been established successfully.');
     
@@ -42,6 +39,33 @@ db.authenticate()
   .catch(err => {
     console.error('Unable to connect to the database:', err);
   })
+}
+
+function upOne(){
+  compose.upAll({ cwd: path.join(__dirname), log: true})
+  .then(
+    () => { setTimeout(authDB, 3000); },
+    err => { console.log('something went wrong:', err.message)}
+  );
+}
+
+compose.ps({}).then(
+  (e) => {
+    if(e.out.match(/diploma_db_[0-9]\s+[a-z-.]+\s+[a-z]+\s+Up\s+/g)){
+      authDB();
+    } else {
+      upOne();
+    }
+  },
+  err => { console.log('something went wrong:', err.message)}
+);
+
+
+
+app.use(fileUpload());
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+
 
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');

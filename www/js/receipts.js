@@ -211,11 +211,10 @@ function aggregateByMonths() {
 		dict[month[m]] = [];
 	}
 	for (let x in arrayPodatkov) {
-		if(!(arrayPodatkov[x].ime in arrayPodatkov)){
 		dict[month[arrayPodatkov[x].datum.getMonth()]].push(arrayPodatkov[x].znesek);
 		sum = dict[month[arrayPodatkov[x].datum.getMonth()]].reduce((previous, current) => current += previous);
 		dictMesecev[arrayPodatkov[x].datum.getMonth()] = sum;
-		}
+		
 	}
 	for (x in dictMesecev) {
 		if (dictMesecev[x] >= maks) {
