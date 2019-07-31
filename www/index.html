@@ -13,7 +13,7 @@
   <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="shortcut icon" href="img/favicon.ico"/>
+  <link rel="shortcut icon" type="image/png" href="img/logo.svg"/>
 
   <title>e-papir</title>
   <!-- Custom fonts for this template-->
@@ -26,12 +26,6 @@
 
 </head>
 <body id="page-top">
-    <div class="app" style="display:none">
-        <div id="deviceready">
-          <p class="event listening"></p>
-          <p class="event received"></p>
-        </div>
-      </div>
   <!-- Page Wrapper -->
   <div id="wrapper">
     <input type="checkbox" id="sidebar-checkbox" name="sidebar-checkbox"checked/>
@@ -174,7 +168,7 @@
                 <div class="d-block w-100 present-image" style="background-image: url('img/tretja.jpg')" alt="Third slide"></div>
                 <div class="carousel-caption">
                     <h1 class="desc">e-papir</h1>
-                    <p class="desc">E-papir je aplikacija, ki vsaki fizični hrani njej izdane elektronske račune</p>
+                    <p class="desc">E-papir je aplikacija, ki vsaki fizični osebi hrani izdane elektronske račune</p>
                 </div>
             </div>
           </div>
@@ -397,11 +391,7 @@
                 </button>
               </div>
               <div class="modal-body">
-                <form data-toggle="validator" role="form" id="preveri">
-                  <div class="form-group">
-                      <label for="inputID" class="control-label">Vnesite identifikacijsko številko računa</label>
-                      <input type="text" class="form-control" id="idRac" placeholder="17286988" required>
-                  </div>
+                <form data-toggle="validator" method="POST" action="/" role="form" id="preveri">
                   <div class="form-group">
                     <label for="inputName" class="control-label">Vnesite ime izdajatelja</label>
                     <input type="text" class="form-control" id="ime" placeholder="Mercator" required>
@@ -454,7 +444,7 @@
                 </a>
               </li>
               <li>
-                <a class="gumb" >
+                <a class="gumb" href="nfc.html">
                   <i class="fas fa-mobile-alt my-float"></i>
                 </a>
               </li>
@@ -484,14 +474,12 @@
         </div>
       </div>
     </div>
-    <!--
-    <script src="cordova.js"></script>-->
-    <script type="text/javascript" src="js/index.js"></script>
-
+    
+    <script src="cordova.js"></script>
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.js"></script>
     <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+    <script src="js/index.js"></script>
     <!-- Core plugin JavaScript-->
     <script type="text/javascript" src="vendor/jquery-easing/jquery.easing.min.js"></script>
 

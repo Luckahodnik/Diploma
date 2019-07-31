@@ -78,7 +78,6 @@ function processXML(xmlStr) {
 	var znesek = xmlDoc.evaluate("/Invoice/M_INVOIC/G_SG50[S_MOA/C_C516/D_5025='9']/S_MOA/C_C516/D_5004/text()", xmlDoc, null, XPathResult.STRING_TYPE, null);
 	var ddv = xmlDoc.evaluate("/Invoice/M_INVOIC/G_SG50[S_MOA/C_C516/D_5025='176']/S_MOA/C_C516/D_5004/text()", xmlDoc, null, XPathResult.STRING_TYPE, null);
 	var datum = xmlDoc.evaluate("/Invoice/M_INVOIC/S_DTM[C_C507/D_2005='137']/C_C507/D_2380/text()", xmlDoc, null, XPathResult.STRING_TYPE, null);
-	var idRac = xmlDoc.evaluate("/Invoice/M_INVOIC/S_BGM/C_C106/D_1004/text()", xmlDoc, null, XPathResult.STRING_TYPE, null);
 	
 	if (ime.stringValue != null) {
 		retObj["name"] = ime.stringValue;
@@ -95,9 +94,7 @@ function processXML(xmlStr) {
 	if (datum.stringValue != null) {
 		retObj["datum"] = new Date(datum.stringValue);
 	}
-	if (idRac.stringValue != null){
-		retObj["idRacuna"] = parseInt(idRac.stringValue);
-	}
+
 
 	vsotaDDV += retObj["ddv"];
 	vsota += retObj["znesek"];
@@ -175,7 +172,6 @@ function updateOnKeypress() {
 	const spentEl = document.getElementById('znesek');
 	const ddvEl = document.getElementById('vn_ddv');
 	const whenEl = document.getElementById('datum');
-	const vpisiID = document.getElementById('idRac');
 	const submitEl = document.getElementById('dodaj');
 
 	let funcOnKeypress = function (e) {
@@ -187,7 +183,6 @@ function updateOnKeypress() {
 	}
 
 	submitEl.onclick = updateTable;
-	vpisiID.addEventListener('keypress', funcOnKeypress);	
 	spentEl.addEventListener('keypress', funcOnKeypress);
 	whenEl.addEventListener('keypress', funcOnKeypress);
 	vpisiEl.addEventListener('keypress', funcOnKeypress);
