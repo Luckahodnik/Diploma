@@ -1,21 +1,19 @@
 $( document ).ready(function() {
-    let vpis = $('#vpis');
-    let form = vpis.closest('form');
+    let dodaj = $('#dodaj');
+    let form = dodaj.closest('form');
     let inputs = form.find('input');
     let action = form.attr('action');
     let method = form.attr('method');
     if(!method)
         method = 'POST';
 
-    vpis.click(function(event){
+    dodaj.click(function(event){
         event.preventDefault();
         let postObject = {};
         inputs.each(function( index ) {
             if($(this).attr('type') == 'file'){
+                console.log(this.files);
                 postObject[$(this).attr('id')] = $(this)[0].files[0];
-            } 
-            else if($(this).attr('type') == 'checkbox'){
-                postObject[$(this).attr('id')] = $(this).prop('checked');
             } else {
                 postObject[$(this).attr('id')] = $(this).val();
             }

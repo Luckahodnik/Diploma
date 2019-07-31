@@ -15,6 +15,12 @@ let Racun = seq.define('racuni',{
     }
   },
 
+  idRacuna:{
+    field: 'id_racuna',
+    type: Sequelize.INTEGER,
+    allowNull: false,
+  },
+
   izdajateljRacuna: {
     field: 'izdajatelj_racuna',
     type: Sequelize.STRING,

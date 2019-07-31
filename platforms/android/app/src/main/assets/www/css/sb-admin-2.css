@@ -10688,16 +10688,16 @@ a:focus {
 }
 
 .bg-gradient-primary {
-  background-color: rgb(15, 126, 92);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(10%, rgb(15, 126, 92)), to(rgb(15, 126, 92)));
-  background-image: linear-gradient(180deg, rgb(15, 126, 92) 10%, rgb(15, 126, 92) 100%);
+  background-color: #00264d;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(10%, #00004d), to(#00004d));
+  background-image: linear-gradient(180deg,#00264d 10%,#00264d 100%);
   background-size: cover;
 }
 
 .bg-gradient-secondary {
   background-color: #858796;
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(10%, #858796), to(#60616f));
-  background-image: linear-gradient(180deg, #858796 10%, #60616f 100%);
+  background-image: linear-gradient(180deg, #000080 10%, #000080 100%);
   background-size: cover;
 }
 

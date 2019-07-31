@@ -72,12 +72,17 @@ app.set('view engine', 'handlebars');
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname,'/www/index.html'))
 });
+
 app.post('/register', function(req, res) {
   console.log(req.body);
   console.log(req.files);
   res.send("ALL OK!");
 });
 app.post('/login', function(req, res) {
+  console.log(req.body);
+  res.send("ALL OK!");
+});
+app.post('/', function(req, res) {
   console.log(req.body);
   res.send("ALL OK!");
 });
@@ -88,6 +93,7 @@ app.get(['/register', '/register.html'], function (req, res) {
 app.get(['/login', '/login.html'], function (req, res) {
   res.sendFile(path.join(__dirname,'/www/login.html'))
 });
+
 
 app.use('/css', express.static('www/css'));
 app.use('/img', express.static('www/img'));

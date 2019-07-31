@@ -1,13 +1,13 @@
 $( document ).ready(function() {
-    let registracija = $('#vpis');
-    let form = registracija.closest('form');
+    let vpis = $('#vpis');
+    let form = vpis.closest('form');
     let inputs = form.find('input');
     let action = form.attr('action');
     let method = form.attr('method');
     if(!method)
         method = 'POST';
 
-    registracija.click(function(event){
+    vpis.click(function(event){
         event.preventDefault();
         let postObject = {};
         inputs.each(function( index ) {

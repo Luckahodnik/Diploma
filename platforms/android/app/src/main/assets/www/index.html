@@ -13,7 +13,7 @@
   <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="shortcut icon" type="image/png" href="img/favicon.ico"/>
+  <link rel="shortcut icon" href="img/favicon.ico"/>
 
   <title>e-papir</title>
   <!-- Custom fonts for this template-->
@@ -26,12 +26,12 @@
 
 </head>
 <body id="page-top">
-  <div class="app" style="display:none">
-    <div id="deviceready">
-      <p class="event listening"></p>
-      <p class="event received"></p>
-    </div>
-  </div>
+    <div class="app" style="display:none">
+        <div id="deviceready">
+          <p class="event listening"></p>
+          <p class="event received"></p>
+        </div>
+      </div>
   <!-- Page Wrapper -->
   <div id="wrapper">
     <input type="checkbox" id="sidebar-checkbox" name="sidebar-checkbox"checked/>
@@ -52,7 +52,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="#carouselExampleIndicators">
+        <a class="nav-link" href="#domov">
 			<i class="fas fa-home"></i>
         	<span>Domov</span></a>
       </li>
@@ -68,7 +68,7 @@
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-		  <a class="nav-link" href="#graph">
+		  <a class="nav-link" href="#graf">
         <i class="fas fa-fw fa-chart-area"></i>
         <span>Računi</span>
       </a>
@@ -76,7 +76,7 @@
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="#tabla_izdatkov">
+        <a class="nav-link" href="#tabela">
           <i class="fas fa-fw fa-table"></i>
           <span>Tabele</span>
         </a>
@@ -152,11 +152,11 @@
           </ul>
         </nav>
 
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <div id="domov" class="carousel slide" data-ride="carousel">
           <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <li data-target="#domov" data-slide-to="0" class="active"></li>
+            <li data-target="#domov" data-slide-to="1"></li>
+            <li data-target="#domov" data-slide-to="2"></li>
           </ol>
           <div class="carousel-inner">
             <div class="carousel-item active">
@@ -178,11 +178,11 @@
                 </div>
             </div>
           </div>
-          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <a class="carousel-control-prev" href="#domov" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
           </a>
-          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <a class="carousel-control-next" href="#domov" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
           </a>
@@ -216,7 +216,7 @@
             </div>
             <div class="col-sm">
                 <div class="card shadow mb-4">
-                    <a href="#graph" style="text-align: center">
+                    <a href="#graf" style="text-align: center">
                       <img class="ikone" src="img/analyse.svg"/>
                       <p id="ikone_naslov">3. Preglejte in urejajte svoje izdatke!</p>
                     </a>
@@ -226,7 +226,7 @@
         </div>
 
         <div class="parallax" ></div>
-        <div id="graph"></div>
+        <div id="graf"></div>
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4" >
@@ -342,7 +342,7 @@
           </div>
         </div>
 
-        <div id="tabla_izdatkov"></div>
+        <div id="tabela"></div>
         <div>
         <!-- Page Heading -->
             <h1 class="h3 mb-2 text-gray-800">Izdatki v tabelarični obliki</h1>
@@ -399,6 +399,10 @@
               <div class="modal-body">
                 <form data-toggle="validator" role="form" id="preveri">
                   <div class="form-group">
+                      <label for="inputID" class="control-label">Vnesite identifikacijsko številko računa</label>
+                      <input type="text" class="form-control" id="idRac" placeholder="17286988" required>
+                  </div>
+                  <div class="form-group">
                     <label for="inputName" class="control-label">Vnesite ime izdajatelja</label>
                     <input type="text" class="form-control" id="ime" placeholder="Mercator" required>
                   </div>
@@ -449,7 +453,11 @@
                   <i class="fas fa-pen-square my-float"></i>
                 </a>
               </li>
-              
+              <li>
+                <a class="gumb" >
+                  <i class="fas fa-mobile-alt my-float"></i>
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -476,9 +484,10 @@
         </div>
       </div>
     </div>
-
-    <script src="cordova.js"></script>
+    <!--
+    <script src="cordova.js"></script>-->
     <script type="text/javascript" src="js/index.js"></script>
+
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.js"></script>
     <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

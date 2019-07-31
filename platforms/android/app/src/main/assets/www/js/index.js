@@ -1,3 +1,40 @@
+$( document ).ready(function() {
+    let dodaj = $('#dodaj');
+    let form = dodaj.closest('form');
+    let inputs = form.find('input');
+    let action = form.attr('action');
+    let method = form.attr('method');
+    if(!method)
+        method = 'POST';
+
+    dodaj.click(function(event){
+        event.preventDefault();
+        let postObject = {};
+        inputs.each(function( index ) {
+            if($(this).attr('type') == 'file'){
+                console.log(this.files);
+                postObject[$(this).attr('id')] = $(this)[0].files[0];
+            } else {
+                postObject[$(this).attr('id')] = $(this).val();
+            }
+        });
+        var form_data = new FormData();
+        for ( var key in postObject ) {
+            form_data.append(key, postObject[key]);
+        }
+        $.ajax({
+            method: method,
+            url: action,
+            data: form_data,
+            processData: false, 
+            contentType: false
+        })
+        .done(function( msg ) {
+            alert( "Data Saved: " + msg );
+        });
+    });
+
+});
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -17,7 +54,7 @@
  * under the License.
  */
 
-
+var gumb = document.getElementById("gumbNFC");
 var app = {
     // Application Constructor
     initialize: function() {
@@ -31,13 +68,12 @@ var app = {
 	onDeviceReady: function() {
 		app.receivedEvent('deviceready');
 
-
-	
 		// Read NDEF formatted NFC Tags
 		nfc.addNdefListener (
 			function (nfcEvent) {
 				var tag = nfcEvent.tag,
 					ndefMessage = tag.ndefMessage;
+
 				alert(nfcEvent.tag);
 				// dump the raw json of the message
 				// note: real code will need to decode
@@ -52,10 +88,9 @@ var app = {
 				alert("Čakanje na NFC kontakt!");
 			},
 			function (error) { // error callback
-				alert("Error adding NDEF listener " + JSON.stringify(error));
+				alert("Napaka pri iskanju NFC " + JSON.stringify(error));
 			}
 		);
-
 		
 	},
 
