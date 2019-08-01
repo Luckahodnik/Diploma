@@ -1,0 +1,50 @@
+@media (max-width: 767.98px) {
+    html{
+        height:100%;
+    }
+
+    body {
+    min-height: 100%;
+    background: #00264d;
+    margin: 0px;
+    }
+
+    .card{
+        margin-top:1.5em;
+        height: 100%;
+    }
+    .app{
+        color:black;
+        margin:10px;
+    }
+
+    #messageDiv{
+        margin:0px;
+    }
+
+    #nfc{
+        width:50%;
+    }
+    #comp{
+        display:none;
+    }
+}
+
+@media (min-width: 767.98px) {
+    .card{
+        display:none;
+    }
+    body{
+        background: #00264d;
+    }
+    #comp{
+        background:white;
+        font-size: 2em;
+        color:black;
+        margin-top:20px;
+    }
+    #stop{
+        width:50%;
+    }
+
+}

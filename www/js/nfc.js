@@ -39,10 +39,10 @@ var app = {
           nfc.addTagDiscoveredListener(
              app.onNonNdef,           // tag successfully scanned
              function (status) {      // listener successfully initialized
-                app.display("Listening for NFC tags.");
+                app.display("Poslušanje za NFC značke.");
              },
              function (error) {       // listener fails to initialize
-                app.display("NFC reader failed to initialize "
+                app.display("NFC se ni inicializiral "
                    + JSON.stringify(error));
              }
           );
@@ -50,10 +50,10 @@ var app = {
           nfc.addNdefFormatableListener(
              app.onNonNdef,           // tag successfully scanned
              function (status) {      // listener successfully initialized
-                app.display("Listening for NDEF Formatable tags.");
+                app.display("Poslušanje za NDEF značke");
              },
              function (error) {       // listener fails to initialize
-                app.display("NFC reader failed to initialize "
+                app.display("NFC se ni inicializiral "
                    + JSON.stringify(error));
              }
           );
@@ -61,10 +61,10 @@ var app = {
           nfc.addNdefListener(
              app.onNfc,               // tag successfully scanned
              function (status) {      // listener successfully initialized
-                app.display("Listening for NDEF messages.");
+                app.display("Poslušanje za NDEF sporočila");
              },
              function (error) {       // listener fails to initialize
-                app.display("NFC reader failed to initialize "
+                app.display("NFC bralec se ni inicializiral "
                    + JSON.stringify(error));
              }
           );
@@ -73,15 +73,15 @@ var app = {
              "text/plain",
              app.onNfc,               // tag successfully scanned
              function (status) {      // listener successfully initialized
-                app.display("Listening for plain text MIME Types.");
+                app.display("Poskušanje za MIME vrste.");
              },
              function (error) {       // listener fails to initialize
-                app.display("NFC reader failed to initialize "
+                app.display("NFC se ni inicializiral "
                    + JSON.stringify(error));
              }
           );
     
-          app.display("Tap a tag to read data.");
+          app.display("Prislonite telefon na terminal!");
        },
     
        /*
@@ -106,7 +106,7 @@ var app = {
        onNfc: function(nfcEvent) {
           app.clear();              // clear the message div
           // display the event type:
-          app.display(" Event Type: " + nfcEvent.type);
+          //app.display(" Event Type: " + nfcEvent.type);
           app.showTag(nfcEvent.tag);   // display the tag details
        },
        
@@ -136,45 +136,37 @@ var app = {
     
        showTag: function(tag) {
           // display the tag properties:
-          app.display("Tag ID: " + nfc.bytesToHexString(tag.id));
-          app.display("Tag Type: " +  tag.type);
-          app.display("Max Size: " +  tag.maxSize + " bytes");
-          app.display("Is Writable: " +  tag.isWritable);
-          app.display("Can Make Read Only: " +  tag.canMakeReadOnly);
+          app.display("ID značke: " + nfc.bytesToHexString(tag.id));
+          app.display("Vrsta značke: " +  tag.type);
+          //app.display("Maksimalna velikost: " +  tag.maxSize + " bytes");
     
           // if there is an NDEF message on the tag, display it:
           var thisMessage = tag.ndefMessage;
           if (thisMessage !== null) {
              // get and display the NDEF record count:
-             app.display("Tag has NDEF message with " + thisMessage.length
-                + " record" + (thisMessage.length === 1 ? ".":"s."));
+             app.display("Značka ima NDEF sporočilo z " + thisMessage.length
+                + " zapisi" + (thisMessage.length === 1 ? ".":"s."));
     
              // switch is part of the extended example
              var type =  nfc.bytesToString(thisMessage[0].type);
              switch (type) {
                 case nfc.bytesToString(ndef.RTD_TEXT):
-                   app.display("Looks like a text record to me.");
-                   break;
-                case nfc.bytesToString(ndef.RTD_URI):
-                   app.display("That's a URI right there");
-                   break;
-                case nfc.bytesToString(ndef.RTD_SMART_POSTER):
-                   app.display("Golly!  That's a smart poster.");
+                   app.display("Prejeta tekstovna datoteka.");
                    break;
                 // add any custom types here,
                 // such as MIME types or external types:
-                case 'android.com:pkg':
+                /*case 'android.com:pkg':
                    app.display("You've got yourself an AAR there.");
                    break;
                 default:
                    app.display("I don't know what " +
                       type +
                       " is, must be a custom type");
-                   break;
+                   break;*/
              }
              // end of extended example
     
-             app.display("Message Contents: ");
+             app.display("Vsebina sporočila: ");
              app.showMessage(thisMessage);
           }
        },
@@ -194,9 +186,9 @@ var app = {
        showRecord: function(record) {
           // display the TNF, Type, and ID:
           app.display(" ");
-          app.display("TNF: " + record.tnf);
-          app.display("Type: " +  nfc.bytesToString(record.type));
-          app.display("ID: " + nfc.bytesToString(record.id));
+          //app.display("TNF: " + record.tnf);
+          //app.display("Type: " +  nfc.bytesToString(record.type));
+          //app.display("ID: " + nfc.bytesToString(record.id));
     
           // if the payload is a Smart Poster, it's an NDEF message.
           // read it and display it (recursion is your friend here):
@@ -206,7 +198,7 @@ var app = {
     
           // if the payload's not a Smart Poster, display it:
           } else {
-             app.display("Podatki: " + nfc.bytesToString(record.payload));
+             app.display(nfc.bytesToString(record.payload));
           }
        }
     };     // end of app

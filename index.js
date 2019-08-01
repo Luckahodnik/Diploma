@@ -1,4 +1,6 @@
 const express = require('express');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
 const exphbs  = require('express-handlebars');
 const path = require('path');
 //const models = require('./models/racuni');
@@ -12,6 +14,7 @@ const fileUpload = require('express-fileupload');
 const crypto = require('crypto');
 const hash = crypto.createHash('sha256');
 const compose = require('docker-compose');
+
 
 function authDB(){
   db.authenticate()
@@ -60,17 +63,24 @@ compose.ps({}).then(
   err => { console.log('something went wrong:', err.message)}
 );
 
-
-
 app.use(fileUpload());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-
+app.use(cookieParser());
 
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
+
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname,'/www/index.html'))
+    res.cookie('piskot','dela'),{expire : new Date() + 9999};
+    console.log('Cookies: ', req.cookies);
+});
+
+
+app.get('/clearcookie', function(req,res){
+  clearCookie('cookie_name');
+  res.send('Cookie deleted');
 });
 
 app.post('/register', function(req, res) {
@@ -93,7 +103,9 @@ app.get(['/register', '/register.html'], function (req, res) {
 app.get(['/login', '/login.html'], function (req, res) {
   res.sendFile(path.join(__dirname,'/www/login.html'))
 });
-
+app.get(['/nfc', '/nfc.html'], function (req, res) {
+  res.sendFile(path.join(__dirname,'/www/nfc.html'))
+});
 
 app.use('/css', express.static('www/css'));
 app.use('/img', express.static('www/img'));
