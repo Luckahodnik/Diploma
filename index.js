@@ -1,6 +1,5 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const session = require('express-session');
 const exphbs  = require('express-handlebars');
 const path = require('path');
 //const models = require('./models/racuni');
@@ -10,10 +9,40 @@ const port = 3000;
 const db = require('./config/database.js');
 const Racun = require('./models/Racun.js');
 const Uporabnik = require('./models/Uporabnik.js');
+const http = require('http')
+
 const fileUpload = require('express-fileupload');
 const crypto = require('crypto');
 const hash = crypto.createHash('sha256');
 const compose = require('docker-compose');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+
+var session = require("express-session"),
+    bodyParser = require("body-parser");
+
+
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    User.findOne({ username: username }, function (err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      if (!user.validPassword(password)) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
+    });
+  }
+));
+
+
+app.use(express.static("public"));
+app.use(session({ secret: "cats" }));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 function authDB(){
@@ -67,6 +96,8 @@ app.use(fileUpload());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
+
+
 
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');

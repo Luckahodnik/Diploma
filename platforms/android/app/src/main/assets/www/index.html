@@ -3,8 +3,8 @@
 
 <head>
   <!-- Cordova meta tags-->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
-  <meta name="format-detection" content="telephone=no">
+  <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+  --><meta name="format-detection" content="telephone=no">
   <meta name="msapplication-tap-highlight" content="no">
   <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
 
@@ -23,9 +23,10 @@
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.css" rel="stylesheet">
   <link href="css/mystyle.css" rel="stylesheet">
-
+  <link rel="stylesheet" type="text/css" href="css/cookieconsent.min.css" />
 </head>
 <body id="page-top">
+
   <!-- Page Wrapper -->
   <div id="wrapper">
     <input type="checkbox" id="sidebar-checkbox" name="sidebar-checkbox"checked/>
@@ -474,7 +475,7 @@
         </div>
       </div>
     </div>
-    
+  </div>
     <script src="cordova.js"></script>
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.js"></script>
@@ -492,9 +493,27 @@
     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
     <script src="vendor/validator/validator.min.js"></script>
 
-
-
-
-  </div>
+    <script src="js/cookieconsent.min.js"></script>
+    <script>
+      window.cookieconsent.initialise({
+        "palette": {
+          "popup": {
+            "background": "#00264d"
+          },
+          "button": {
+            "background": "#24977e"
+          }
+        },
+        "theme": "classic",
+        "position": "top",
+        "content": {
+          "message": "Spletna stran uporablja piškotke, ki hranijo podatke za lažjo uporabo.",
+          "dismiss": "Razumem.",
+          "link": "Več",
+          "href": "http://localhost:3000/vec.html"
+        }
+      });
+    </script>
+    </script>
 </body>
 </html>

@@ -17,7 +17,8 @@ let Racun = seq.define('racuni',{
 
   idRacuna:{
     field: 'id_racuna',
-    type: Sequelize.INTEGER,
+    primaryKey: true,
+    type: Sequelize.UUID,
     allowNull: false,
   },
 
