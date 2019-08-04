@@ -1,3 +1,4 @@
+var DataTypes = require('sequelize/lib/data-types');
 const Sequelize = require('sequelize');
 const seq = require('../config/database');
 const Uporabnik = require('./Uporabnik.js');
@@ -19,6 +20,7 @@ let Racun = seq.define('racuni',{
     field: 'id_racuna',
     primaryKey: true,
     type: Sequelize.UUID,
+    defaultValue: Sequelize.UUIDV1,
     allowNull: false,
   },
 

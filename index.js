@@ -75,15 +75,18 @@ passport.use('local-signup', new LocalStrategy(
   }
 ));
 
-
-app.use(bodyParser.urlencoded({ extended: false }));
+//passport
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true})); // session secret
 app.use(passport.initialize());
-app.use(session({
-  //store: new (require(db)(session))(),
+app.use(passport.session()); // persistent login sessions
+/*app.use(session({
+  store: new (require(db)(session))(),
   secret: "dhdfhd",
   resave: false,
   cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 days
-}));
+}));*/
 
 passport.serializeUser(function(user, done) {
   done(null, user.id);
@@ -124,8 +127,6 @@ function authDB(){
   })
 }
 
-
-
 function upOne(){
   compose.upAll({ cwd: path.join(__dirname), log: true})
   .then(
@@ -150,21 +151,15 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 
-
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname,'/www/index.html'))
-    res.cookie('piskot','dela'),{expire : new Date() + 9999};
-    console.log('Cookies: ', req.cookies);
+    //res.cookie('piskot','dela'),{expire : new Date() + 9999};
+    //console.log('Cookies: ', req.cookies);
 });
 
-
-app.get('/clearcookie', function(req,res){
-  clearCookie('cookie_name');
-  res.send('Cookie deleted');
-});
 
 app.post('/register', 
   passport.authenticate('local-signup', { successRedirect: '/',
@@ -194,6 +189,9 @@ app.get(['/login', '/login.html'], function (req, res) {
 });
 app.get(['/nfc', '/nfc.html'], function (req, res) {
   res.sendFile(path.join(__dirname,'/www/nfc.html'))
+});
+app.get(['/vec', '/vec.html'], function (req, res) {
+  res.sendFile(path.join(__dirname,'/www/vec.html'))
 });
 
 app.use('/css', express.static('www/css'));
