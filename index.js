@@ -15,14 +15,19 @@ const fileUpload = require('express-fileupload');
 const crypto = require('crypto');
 const hash = crypto.createHash('sha256');
 const compose = require('docker-compose');
-const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
-var session = require("express-session"),
-    bodyParser = require("body-parser");
+var passport   = require('passport')
+var session    = require('express-session')
+var bodyParser = require('body-parser')
+var exceptionHandler = require('express-exception-handler')
+exceptionHandler.handle()
 
-
-passport.use(new LocalStrategy(
+passport.use('local-login', new LocalStrategy(
+  {
+    usernameField: 'email', 
+    passwordField : 'password'
+  },
   function(username, password, done) {
     User.findOne({ username: username }, function (err, user) {
       if (err) { return done(err); }
@@ -37,12 +42,58 @@ passport.use(new LocalStrategy(
   }
 ));
 
+passport.use('local-signup', new LocalStrategy(
+  {
+    usernameField : 'email',
+    passwordField : 'password',
+    passReqToCallback : true // allows us to pass back the entire request to the callback
+  },
+  function(req, email, password, done) {
+    User.findOne({ 'local.email' :  email }, function(err, user) {
+      // if there are any errors, return the error
+      if (err)
+      return done(err);
 
-app.use(express.static("public"));
-app.use(session({ secret: "cats" }));
+      // check to see if theres already a user with that email
+      if (user) {
+        return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+      } else {
+        var newUser = new User();
+
+        // set the user's local credentials
+        newUser.local.email    = email;
+        newUser.local.password = newUser.generateHash(password);
+
+        // save the user
+        newUser.save(function(err) {
+          if (err)
+          throw err;
+          return done(null, newUser);
+        });
+      }
+    }) 
+  }
+));
+
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
-app.use(passport.session());
+app.use(session({
+  //store: new (require(db)(session))(),
+  secret: "dhdfhd",
+  resave: false,
+  cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 days
+}));
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
 
 
 function authDB(){
@@ -73,6 +124,8 @@ function authDB(){
   })
 }
 
+
+
 function upOne(){
   compose.upAll({ cwd: path.join(__dirname), log: true})
   .then(
@@ -98,7 +151,6 @@ app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 
 
-
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
@@ -114,15 +166,21 @@ app.get('/clearcookie', function(req,res){
   res.send('Cookie deleted');
 });
 
-app.post('/register', function(req, res) {
+app.post('/register', 
+  passport.authenticate('local-signup', { successRedirect: '/',
+                                   failureRedirect: '/register' })
+);
+
+app.post('/login',
+  passport.authenticate('local-login', { successRedirect: '/',
+                                   failureRedirect: '/login' })
+);
+
+/*app.post('/login', function(req, res) {
   console.log(req.body);
-  console.log(req.files);
   res.send("ALL OK!");
-});
-app.post('/login', function(req, res) {
-  console.log(req.body);
-  res.send("ALL OK!");
-});
+});*/
+
 app.post('/', function(req, res) {
   console.log(req.body);
   res.send("ALL OK!");
