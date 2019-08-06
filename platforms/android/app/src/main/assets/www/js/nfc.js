@@ -135,70 +135,39 @@ var app = {
     */
     
        showTag: function(tag) {
-          // display the tag properties:
-          app.display("ID značke: " + nfc.bytesToHexString(tag.id));
-          app.display("Vrsta značke: " +  tag.type);
-          //app.display("Maksimalna velikost: " +  tag.maxSize + " bytes");
-    
-          // if there is an NDEF message on the tag, display it:
           var thisMessage = tag.ndefMessage;
           if (thisMessage !== null) {
-             // get and display the NDEF record count:
-             app.display("Značka ima NDEF sporočilo z " + thisMessage.length
-                + " zapisi" + (thisMessage.length === 1 ? ".":"s."));
-    
-             // switch is part of the extended example
+
              var type =  nfc.bytesToString(thisMessage[0].type);
              switch (type) {
                 case nfc.bytesToString(ndef.RTD_TEXT):
-                   app.display("Prejeta tekstovna datoteka.");
+                   app.display("Uspešno prejeta datoteka");
                    break;
-                // add any custom types here,
-                // such as MIME types or external types:
-                /*case 'android.com:pkg':
-                   app.display("You've got yourself an AAR there.");
-                   break;
-                default:
-                   app.display("I don't know what " +
-                      type +
-                      " is, must be a custom type");
-                   break;*/
+
              }
-             // end of extended example
-    
-             app.display("Vsebina sporočila: ");
-             app.showMessage(thisMessage);
+            app.display("Vsebina sporočila: ");
+            app.showMessage(thisMessage);
+
           }
        },
-    /*
-       iterates over the records in an NDEF message to display them:
-    */
-       showMessage: function(message) {
+
+      showMessage: function(message) {
           for (var i=0; i < message.length; i++) {
-             // get the next record in the message array:
              var record = message[i];
-             app.showRecord(record);          // show it
+             app.showRecord(record);
           }
        },
-    /*
-       writes @record to the message div:
-    */
        showRecord: function(record) {
-          // display the TNF, Type, and ID:
-          app.display(" ");
-          //app.display("TNF: " + record.tnf);
-          //app.display("Type: " +  nfc.bytesToString(record.type));
-          //app.display("ID: " + nfc.bytesToString(record.id));
-    
-          // if the payload is a Smart Poster, it's an NDEF message.
-          // read it and display it (recursion is your friend here):
           if (nfc.bytesToString(record.type) === "Sp") {
              var ndefMessage = ndef.decodeMessage(record.payload);
              app.showMessage(ndefMessage);
-    
-          // if the payload's not a Smart Poster, display it:
           } else {
-             app.display(nfc.bytesToString(record.payload));
+             var obj = JSON.parse(nfc.bytesToString(record.payload.splice(3)));
+             //app.display(obj);
+             for(var x=0; x < obj.length; x++){
+                  app.display(Object.values(obj[x]));
+                  lineBreak = document.createElement("br");
+             }
           }
        }
-    };     // end of app
+    };     

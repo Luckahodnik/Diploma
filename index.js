@@ -13,7 +13,6 @@ const http = require('http')
 
 const fileUpload = require('express-fileupload');
 const crypto = require('crypto');
-const hash = crypto.createHash('sha256');
 const compose = require('docker-compose');
 const LocalStrategy = require('passport-local').Strategy;
 
@@ -29,9 +28,12 @@ passport.use('local-login', new LocalStrategy(
     passwordField : 'password'
   },
   function(username, password, done) {
-    User.findOne({ username: username }, function (err, user) {
-      if (err) { return done(err); }
-      if (!user) {
+    const hash = crypto.createHash('sha256');
+    hash.update(username.toLowerCase());
+    Uporabnik.findOne({ where : { uporabniskiHash: hash.digest() } }).then(function (result) {
+      console.log(result);
+      return done(null, result);
+      if (!result.rows) {
         return done(null, false, { message: 'Incorrect username.' });
       }
       if (!user.validPassword(password)) {
@@ -78,15 +80,10 @@ passport.use('local-signup', new LocalStrategy(
 //passport
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true})); // session secret
+app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true}));
 app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
-/*app.use(session({
-  store: new (require(db)(session))(),
-  secret: "dhdfhd",
-  resave: false,
-  cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 days
-}));*/
+app.use(passport.session()); 
+
 
 passport.serializeUser(function(user, done) {
   done(null, user.id);

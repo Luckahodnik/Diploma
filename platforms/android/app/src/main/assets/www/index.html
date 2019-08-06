@@ -80,14 +80,19 @@
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
+
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
         <label style="display: inline-block;" class="rounded-circle border-0" id="sidebarToggle" for="sidebar-checkbox"></label>
       </div>
+      <div style="position: absolute; bottom: 20px; left:20px;">
+          <a href="vec.html">
+          <i class="fas fa-info-circle" style="color:rgba(255, 255, 255, 0.8);"></i>
+      </a>
+    </div>
 
     </ul>
     <!-- End of Sidebar -->
-
     <!-- Sidebar Overlay-->
     <label for="sidebar-checkbox" id="sidebar-overlay">
 
@@ -110,27 +115,9 @@
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
-
-            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-            <li class="nav-item dropdown no-arrow d-sm-none">
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                <form class="form-inline mr-auto w-100 navbar-search">
-                  <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2"/>
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search fa-sm"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </li>
-
-
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
+
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">John Doe</span>
                 <img class="img-profile rounded-circle" src="img/user.png">
@@ -143,11 +130,10 @@
                 </a>
               </div>
             </li>
-
           </ul>
         </nav>
-
-        <div id="domov" class="carousel slide" data-ride="carousel">
+        <a id="domov"></a>
+        <div  class="carousel slide" data-ride="carousel">
           <ol class="carousel-indicators">
             <li data-target="#domov" data-slide-to="0" class="active"></li>
             <li data-target="#domov" data-slide-to="1"></li>
@@ -189,13 +175,13 @@
           </p>
           <hr/>
         </div>
-      
+        <div id="prostor"></div>
         <!--cards with selections-->
         <div class="container">
           <div class="row">
             <div class="col-sm">
               <div class="card shadow mb-4">
-                  <a href="login.html" style="text-align: center"> 
+                  <a href="register.html" style="text-align: center"> 
                     <img class="ikone" src="img/password.svg"/>
                     <p id="ikone_naslov">1. Registrirajte in vpišite se</p>
                   </a>
@@ -203,7 +189,7 @@
             </div>
             <div class="col-sm" >
                 <div class="card shadow mb-4" style="text-align: center">
-                    <a>
+                    <a href="nfc.html" style="text-align: center">
                       <img class="ikone" src="img/terminal.svg" />
                       <p id="ikone_naslov">2. Prislonite telefon na terminal</p>
                     </a>
@@ -220,18 +206,20 @@
           </div>
         </div>
 
-        <div class="parallax" ></div>
-        <div id="graf"></div>
 
+        <hr id="graf">
+        <div id="prostor"></div>
+        <div id="prostor"></div>
+        <div id="prostor"></div>
+        <div id="prostor"></div>
         <!-- Page Heading -->
-        <div class="d-sm-flex align-items-center justify-content-between mb-4" >
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
           <div>
             <h1 class="h3 mb-0 text-gray-800">Izdatki v grafični obliki</h1>
-            <p class="mb-4">Tukaj si lahko ogledate grafično upodobitev vaših izdatkov po mesecih.</p>
+            <p class="h5 mb-4">Tukaj si lahko ogledate grafično upodobitev vaših izdatkov po mesecih.</p>
           </div>  
           <a href="#" class="d-block d-sm-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generiraj poročilo izdatkov</a>
         </div>
-
         <!-- Content Row -->
         <div class="row">
 
@@ -301,49 +289,45 @@
                 </div>
               </div>
             </div>
-          </div>
-          
+          </div>   
         </div>
-
         <div id="prostor"></div>
         <!-- Content Row -->
         <div class="row">
           <!-- Area Chart -->
-          <div class="col-xl-12 col-lg-12 col-s-12">
+          <div class="col-xl-12">
             <div class="card shadow mb-4">
               <!-- Card Header - Dropdown -->
               <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">Pregled nad izdatki</h6>
+
                 <div class="dropdown no-arrow">
-                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                  <div class="dropdown-header">Prikaz izdatkov:</div>
-                  <a class="dropdown-item" href="#">Mesečni</a>
-                  <a class="dropdown-item active" href="#">Letni</a>
-                </div>
+                    <select id="selectElementId">
+                    </select>
                 </div>
               </div>
               <!-- Card Body -->
+              <div id="prostor"></div>
               <div class="card-body">
                 <div class="chart-area">
                   <canvas id="myAreaChart"></canvas>
                 </div>
+                <div id="prostor"></div>
                 <hr/>
-                V grafu si lahko ogledate svoje letne in mesečne izdatke.
+                V grafu si lahko ogledate svoje letne izdatke. V zgornjem desnem kotu okna lahko izberete leto prikazanih podatkov.
               </div>
             </div>
           </div>
         </div>
+        <div id="prostor"></div>
+        <div id="prostor"></div>
 
-        <div id="tabela"></div>
-        <div>
-        <!-- Page Heading -->
+        <hr id="tabela">
+        <div id="prostor"></div>
+        <div id="tab">
             <h1 class="h3 mb-2 text-gray-800">Izdatki v tabelarični obliki</h1>
-            <p class="mb-4">Tukaj si lahko ogledate in urejate v tabelaričnem pogledu bolj podrobne podatke vaših računov</p>
+            <p class="h5 mb-4">Tukaj si lahko ogledate in urejate v tabelaričnem pogledu bolj podrobne podatke vaših računov</p>
         </div>
-        <!-- DataTales Example -->
 
         <div class="card shadow mb-4">
           <div class="card-header py-3">
@@ -352,12 +336,14 @@
           <div class="card-body">
             <div class="table-responsive col-12">
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <div id="prostor"></div>
               <thead>
                 <tr>
                 <th>Ime izdajatelja</th>
                 <th>Celoten znesek računa</th>
                 <th>DDV</th>
                 <th>Datum izdatka</th>
+                <th></th>
                 </tr>
               </thead>
               <tfoot>
@@ -366,6 +352,7 @@
                   <th>Celoten znesek računa</th>
                   <th>DDV</th>
                   <th>Datum izdatka</th>
+                  <th></th>
                 </tr>
               </tfoot>
               <tbody>
@@ -374,13 +361,40 @@
                     <td>120€</td>
                     <td>12€</td>
                     <td>12/6/2019</td>
-                  </tr>
+                    <td><input type="button" value="X" onclick="deleteRow(this)"></td>
+                </tr>
+                <tr>
+                    <td>Mercator</td>
+                    <td>120€</td>
+                    <td>12€</td>
+                    <td>12/6/2019</td>
+                    <td><input type="button" value="X" onclick="deleteRow(this)"></td>
+                </tr>
+                <tr>
+                    <td>Mercator</td>
+                    <td>120€</td>
+                    <td>12€</td>
+                    <td>12/6/2019</td>
+                    <td><input type="button" value="X" onclick="deleteRow(this)"></td>
+                </tr>
+                <tr>
+                    <td>Mercator</td>
+                    <td>120€</td>
+                    <td>12€</td>
+                    <td>12/6/2019</td>
+                    <td><input type="button" value="X" onclick="deleteRow(this)"></td>
+                </tr>
+
               </tbody>
               </table>
+              <div id="prostor"></div>
             </div>
           </div>
         </div>
-
+        <div id="prostor"></div>
+        <div id="prostor"></div>
+        <div id="prostor"></div>
+        <div id="prostor"></div>
         <!-- Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
           <div class="modal-dialog" role="document">
@@ -418,15 +432,13 @@
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Zapri</button>
                   </div>
                 </form>
-              </div>
-              
+              </div>  
               </div>
             </div>
         </div>
 
         <!-- Content Row -->
         <div class="row">
-
           <!-- Content Column -->
           <div class="col-lg-12 mb-4">
             <a class="float gumb" id="menu-share">
@@ -450,11 +462,10 @@
                 </a>
               </li>
             </ul>
+
           </div>
         </div>
-  <!-- /.container-fluid -->
       </div>
-      <!-- End of Main Content -->
     </div>
 
     <!-- Logout Modal-->
@@ -510,10 +521,9 @@
           "message": "Spletna stran uporablja piškotke, ki hranijo podatke za lažjo uporabo.",
           "dismiss": "Razumem.",
           "link": "Več",
-          "href": "http://localhost:3000/vec.html"
+          "href": "/vec.html"
         }
       });
-    </script>
     </script>
 </body>
 </html>

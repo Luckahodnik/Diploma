@@ -2,6 +2,11 @@ let vsota = 0;
 let vsotaDDV = 0;
 let arrayPodatkov = [];
 var chart = null;
+function deleteRow(r) {
+	var i = r.parentNode.parentNode.rowIndex;
+	document.getElementById("dataTable").deleteRow(i);
+}
+
 $(document).ready(function () {
 	
 	fileSelector();
@@ -189,6 +194,19 @@ function updateOnKeypress() {
 	ddvEl.addEventListener('keypress', funcOnKeypress);
 
 	//document.getElementById("delete").onclick = deleteFromTable;
+}
+
+var min = 2015,
+	max = min + 9,
+	izbrano,
+    select = document.getElementById('selectElementId');
+
+for (var i = min; i<=max; i++){
+    var opt = document.createElement('option');
+    opt.value = i;
+    opt.innerHTML = i;
+	select.appendChild(opt);
+	izbrano = opt;
 }
 
 let maks = 0;

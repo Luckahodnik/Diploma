@@ -27,7 +27,10 @@
 	position: absolute;
 	z-index: -1;
 }
-
+#tab{
+	margin-top:20px;
+	margin-bottom: 40px;
+}
 .bg-login-image::before {
 	background-image: url("../img/photo-1513836279014-a89f7a76ae86.jpeg");
 }

@@ -52,6 +52,18 @@ let Uporabnik = seq.define('uporabniki',{
     allowNull: true,
   },
 
+  createdAt: {
+    field: 'created_at',
+    type: Sequelize.TIME,
+    allowNull: true,
+  },
+
+  updatedAt: {
+    field: 'updated_at',
+    type: Sequelize.TIME,
+    allowNull: true,
+  }
+
 }, {
   sequelize: seq,
   modelName: 'uporabniki',

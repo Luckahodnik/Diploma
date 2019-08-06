@@ -197,16 +197,17 @@ function updateOnKeypress() {
 }
 
 var min = 2015,
-    max = min + 9,
+	max = min + 9,
+	izbrano,
     select = document.getElementById('selectElementId');
 
 for (var i = min; i<=max; i++){
     var opt = document.createElement('option');
     opt.value = i;
     opt.innerHTML = i;
-    select.appendChild(opt);
+	select.appendChild(opt);
+	izbrano = opt;
 }
-
 
 let maks = 0;
 let dict = {};
