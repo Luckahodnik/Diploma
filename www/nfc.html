@@ -1,57 +1,60 @@
 <!DOCTYPE html>
 
 <html>
-   <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <meta name="description" content="">
-      <meta name="author" content="">
-      <title>NDEF Bralnik</title>
-      <link href="css/sb-admin-2.min.css" rel="stylesheet">
-      <link href="css/mystyle.css" rel="stylesheet">
-      <link href="css/nfc.css" rel="stylesheet">
-      <link rel="shortcut icon" type="image/png" href="img/logo.svg"/>
-   </head>
-   <body>
-      <div class="container mobil">
-         <div class="row justify-content-center bg-login-image">
-               <div class="col-xl-6 col-lg-8 col-md-6">
-                  <div class="card">
-                     <div class="card-body p-0">
-                        <div class="container" style="text-align: center; padding: 20px">
-                           <img id="nfc" src="img/nfc.svg"></img>
-                        </div>
-                        <div class="app">     
-                           <div id="messageDiv"></div>
-                        </div>
-                     </div>
+
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   <title>NDEF Bralnik</title>
+   <link href="css/sb-admin-2.min.css" rel="stylesheet">
+   <link href="css/mystyle.css" rel="stylesheet">
+   <link href="css/nfc.css" rel="stylesheet">
+   <link rel="shortcut icon" type="image/png" href="img/logo.svg" />
+</head>
+
+<body>
+   <div class="container mobil">
+      <div class="row justify-content-center bg-login-image">
+         <div class="col-xl-6 col-lg-8 col-md-6">
+            <div class="card">
+               <div class="card-body p-0">
+                  <div class="container" style="text-align: center; padding: 20px">
+                     <img id="nfc" src="img/nfc.svg"></img>
                   </div>
-                  <div class="container">
-                     <div id="comp" style="text-align: center; padding: 20px">
-                           <p>Deluje le na mobilnih telefonih z NFC komponentami!</p>
-                           <img id="stop" src="img/stop.svg"></img>
-                     </div>   
+                  <div class="app">
+                     <div id="messageDiv"></div>
                   </div>
+               </div>
+            </div>
+            <div class="container">
+               <div id="comp" style="text-align: center; padding: 20px">
+                  <p>Deluje le na mobilnih telefonih z NFC komponentami!</p>
+                  <img id="stop" src="img/stop.svg"></img>
+               </div>
             </div>
          </div>
       </div>
+   </div>
 
 
 
-      <script type="text/javascript" src="cordova.js"></script>
-      <script type="text/javascript" src="js/nfc.js"></script>
-      <script type="text/javascript">
-         app.initialize();
-      </script>
-         <!-- Bootstrap core JavaScript-->
-      <script src="vendor/jquery/jquery.min.js"></script>
-      <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <script type="text/javascript" src="cordova.js"></script>
+   <script type="text/javascript" src="js/nfc.js"></script>
+   <script type="text/javascript">
+      app.initialize();
+   </script>
+   <!-- Bootstrap core JavaScript-->
+   <script src="vendor/jquery/jquery.min.js"></script>
+   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-      <!-- Core plugin JavaScript-->
-      <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+   <!-- Core plugin JavaScript-->
+   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-      <!-- Custom scripts for all pages-->
-      <script src="js/sb-admin-2.min.js"></script>
-    </body>
+   <!-- Custom scripts for all pages-->
+   <script src="js/sb-admin-2.min.js"></script>
+</body>
+
 </html>

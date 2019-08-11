@@ -3,17 +3,11 @@ const seq = require('../config/database');
 
 let Uporabnik = seq.define('uporabniki',{
   // attributes
-  uporabniskiHash: {
-    field: 'uporabniski_hash',
-    type: Sequelize.BLOB('tiny'),
+  id: {
+    field: 'id',
+    type: Sequelize.UUID,
     allowNull: false,
     primaryKey: true
-  },
-
-  uporabniskoIme: {
-    field: 'uporabnisko_ime',
-    type: Sequelize.STRING,
-    allowNull: false,
   },
 
   gesloHash: {
@@ -45,22 +39,16 @@ let Uporabnik = seq.define('uporabniki',{
     type: Sequelize.STRING,
     allowNull: false,
   },
-  
-  slikaPath: {
-    field: 'slika_path',
-    type: Sequelize.STRING,
-    allowNull: true,
-  },
 
   createdAt: {
     field: 'created_at',
-    type: Sequelize.TIME,
+    type: 'TIMESTAMP',
     allowNull: true,
   },
 
   updatedAt: {
     field: 'updated_at',
-    type: Sequelize.TIME,
+    type: 'TIMESTAMP',
     allowNull: true,
   }
 

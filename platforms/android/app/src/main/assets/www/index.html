@@ -1,5 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <!-- Cordova meta tags-->
+    <!--<meta http-equiv="Content-Security-Policy" 
+      content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">--><meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" 
+      content="no">
+
+    <meta name="viewport" 
+      content="initial-scale=1, width=device-width, viewport-fit=cover">
+
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" 
+      content="IE=edge">
+    
+    <meta name="description" 
+      content="Home website">
+    
+    <meta name="author" 
+      content="Lučka Hodnik">
+    
+    <link rel="shortcut icon" 
+      type="image/png" 
+      href="img/logo.svg"/>
+
+    <title>e-papir</title>
+
+    <!-- Custom fonts-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Mono&display=swap" rel="stylesheet">
+
+    <!-- Custom styles-->
+    <link href="css/sb-admin-2.css" rel="stylesheet">
+    <link href="css/mystyle.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/cookieconsent.min.css" />
+  </head>
+  <body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+      <input type="checkbox" 
+        id="sidebar-checkbox" 
+        name="sidebar-checkbox"
+        checked/>
+
+      <!-- Sidebar -->
+      <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" 
+        id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand align-items-center justify-content-center" 
+          href="#carouselExampleIndicators">
+          
+          <div class="sidebar-brand-icon">
+            <img id="logo" 
+              src="img/logo.svg">
+            </img>
+          </div>
+          
+          <div class="sidebar-brand-text logo_ime">
+            e-papir
+          </div>
+        </a>
 
 <head>
   <!-- Cordova meta tags-->
@@ -47,276 +111,277 @@
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
 
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item">
-        <a class="nav-link" href="#domov">
-			<i class="fas fa-home"></i>
-        	<span>Domov</span></a>
-      </li>
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item">
+          <a class="nav-link" href="#domov">
+        <i class="fas fa-home"></i>
+            <span>Domov</span></a>
+        </li>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider">
+        <!-- Divider -->
+        <hr class="sidebar-divider">
 
 
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Vmesnik
-      </div>
+        <!-- Heading -->
+        <div class="sidebar-heading">
+          Vmesnik
+        </div>
 
-      <!-- Nav Item - Charts -->
-      <li class="nav-item">
-		  <a class="nav-link" href="#graf">
-        <i class="fas fa-fw fa-chart-area"></i>
-        <span>Računi</span>
-      </a>
-      </li>
-
-      <!-- Nav Item - Tables -->
-      <li class="nav-item">
-        <a class="nav-link" href="#tabela">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Tabele</span>
+        <!-- Nav Item - Charts -->
+        <li class="nav-item">
+        <a class="nav-link" href="#graf">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Računi</span>
         </a>
-      </li>
+        </li>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
+        <!-- Nav Item - Tables -->
+        <li class="nav-item">
+          <a class="nav-link" href="#tabela">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Tabele</span>
+          </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
 
 
-      <!-- Sidebar Toggler (Sidebar) -->
-      <div class="text-center d-none d-md-inline">
-        <label style="display: inline-block;" class="rounded-circle border-0" id="sidebarToggle" for="sidebar-checkbox"></label>
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+          <label style="display: inline-block;" class="rounded-circle border-0" id="sidebarToggle" for="sidebar-checkbox"></label>
+        </div>
+        <div style="position: absolute; bottom: 20px; left:20px;">
+            <a href="vec.html">
+            <i class="fas fa-info-circle" style="color:rgba(255, 255, 255, 0.8);"></i>
+        </a>
       </div>
-      <div style="position: absolute; bottom: 20px; left:20px;">
-          <a href="vec.html">
-          <i class="fas fa-info-circle" style="color:rgba(255, 255, 255, 0.8);"></i>
-      </a>
-    </div>
 
-    </ul>
-    <!-- End of Sidebar -->
-    <!-- Sidebar Overlay-->
-    <label for="sidebar-checkbox" id="sidebar-overlay">
+      </ul>
+      <!-- End of Sidebar -->
+      <!-- Sidebar Overlay-->
+      <label for="sidebar-checkbox" id="sidebar-overlay">
 
-    </label>
-    <!-- End of Sidebar Overlay -->
+      </label>
+      <!-- End of Sidebar Overlay -->
 
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+      <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column">
 
-      <!-- Main Content -->
-      <div id="content">
+        <!-- Main Content -->
+        <div id="content">
 
-        <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+          <!-- Topbar -->
+          <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-          <!-- Sidebar Toggle (Topbar) -->
-          <label id="sidebarToggleTop" for="sidebar-checkbox" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i class="fa fa-bars"></i>
-          </label>
+            <!-- Sidebar Toggle (Topbar) -->
+            <label id="sidebarToggleTop" for="sidebar-checkbox" class="btn btn-link d-md-none rounded-circle mr-3">
+              <i class="fa fa-bars"></i>
+            </label>
 
-          <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto">
-            <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
+            <!-- Topbar Navbar -->
+            <ul class="navbar-nav ml-auto">
+              <!-- Nav Item - User Information -->
+              <li class="nav-item dropdown no-arrow">
 
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">John Doe</span>
-                <img class="img-profile rounded-circle" src="img/user.png">
-              </a>
-              <!-- Dropdown - User Information -->
-              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Izpiši se
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="mr-2 d-none d-lg-inline text-gray-600 small">John Doe</span>
+                  <img class="img-profile rounded-circle" src="img/user.png">
                 </a>
-              </div>
-            </li>
-          </ul>
-        </nav>
-        <a id="domov"></a>
-        <div  class="carousel slide" data-ride="carousel">
-          <ol class="carousel-indicators">
-            <li data-target="#domov" data-slide-to="0" class="active"></li>
-            <li data-target="#domov" data-slide-to="1"></li>
-            <li data-target="#domov" data-slide-to="2"></li>
-          </ol>
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="d-block w-100 present-image" style="background-image: url('img/prva.jpg')" alt="First slide"></div>
-            </div>
-            <div class="carousel-item">
-                <div class="d-block w-100 present-image" style="background-image: url('img/druga.jpg')" alt="Second slide"></div>
-                <div class="carousel-caption">
-                    <h1 class="desc">e-papir</h1>          
-                    <p class="desc"> Bi radi imeli pregled nad vsemi svojimi izdatki?</p>
-
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="d-block w-100 present-image" style="background-image: url('img/tretja.jpg')" alt="Third slide"></div>
-                <div class="carousel-caption">
-                    <h1 class="desc">e-papir</h1>
-                    <p class="desc">E-papir je aplikacija, ki vsaki fizični osebi hrani izdane elektronske račune</p>
-                </div>
-            </div>
-          </div>
-          <a class="carousel-control-prev" href="#domov" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#domov" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-
-        <div class="container">
-          <p id="main-desc">
-            Od zdaj naprej bo vaš postopek prejema računa izgledal tako:
-          </p>
-          <hr/>
-        </div>
-        <div id="prostor"></div>
-        <!--cards with selections-->
-        <div class="container">
-          <div class="row">
-            <div class="col-sm">
-              <div class="card shadow mb-4">
-                  <a href="register.html" style="text-align: center"> 
-                    <img class="ikone" src="img/password.svg"/>
-                    <p id="ikone_naslov">1. Registrirajte in vpišite se</p>
+                <!-- Dropdown - User Information -->
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Izpiši se
                   </a>
+                </div>
+              </li>
+            </ul>
+          </nav>
+          <a id="domov"></a>
+          <div  class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#domov" data-slide-to="0" class="active"></li>
+              <li data-target="#domov" data-slide-to="1"></li>
+              <li data-target="#domov" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                  <div class="d-block w-100 present-image" style="background-image: url('img/prva.jpg')" alt="First slide"></div>
+              </div>
+              <div class="carousel-item">
+                  <div class="d-block w-100 present-image" style="background-image: url('img/druga.jpg')" alt="Second slide"></div>
+                  <div class="carousel-caption">
+                      <h1 class="desc">e-papir</h1>          
+                      <p class="desc"> Bi radi imeli pregled nad vsemi svojimi izdatki?</p>
+
+                  </div>
+              </div>
+              <div class="carousel-item">
+                  <div class="d-block w-100 present-image" style="background-image: url('img/tretja.jpg')" alt="Third slide"></div>
+                  <div class="carousel-caption">
+                      <h1 class="desc">e-papir</h1>
+                      <p class="desc">E-papir je aplikacija, ki vsaki fizični osebi hrani izdane elektronske račune</p>
+                  </div>
               </div>
             </div>
-            <div class="col-sm" >
-                <div class="card shadow mb-4" style="text-align: center">
-                    <a href="nfc.html" style="text-align: center">
-                      <img class="ikone" src="img/terminal.svg" />
-                      <p id="ikone_naslov">2. Prislonite telefon na terminal</p>
-                    </a>
-                </div>
-            </div>
-            <div class="col-sm">
+            <a class="carousel-control-prev" href="#domov" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#domov" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+
+          <div class="container">
+            <p id="main-desc">
+              Od zdaj naprej bo vaš postopek prejema računa izgledal tako:
+            </p>
+            <hr/>
+          </div>
+          <div id="prostor"></div>
+          <!--cards with selections-->
+          <div class="container">
+            <div class="row">
+              <div class="col-sm">
                 <div class="card shadow mb-4">
-                    <a href="#graf" style="text-align: center">
-                      <img class="ikone" src="img/analyse.svg"/>
-                      <p id="ikone_naslov">3. Preglejte in urejajte svoje izdatke!</p>
+                    <a href="register.html" style="text-align: center"> 
+                      <img class="ikone" src="img/password.svg"/>
+                      <p id="ikone_naslov">1. Registrirajte in vpišite se</p>
                     </a>
                 </div>
-            </div>
-          </div>
-        </div>
-
-
-        <hr id="graf">
-        <div id="prostor"></div>
-        <div id="prostor"></div>
-        <div id="prostor"></div>
-        <div id="prostor"></div>
-        <!-- Page Heading -->
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <div>
-            <h1 class="h3 mb-0 text-gray-800">Izdatki v grafični obliki</h1>
-            <p class="h5 mb-4">Tukaj si lahko ogledate grafično upodobitev vaših izdatkov po mesecih.</p>
-          </div>  
-          <a href="#" class="d-block d-sm-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generiraj poročilo izdatkov</a>
-        </div>
-        <!-- Content Row -->
-        <div class="row">
-
-          <!-- Output with DDV -->
-          <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Vsi vnešeni izdatki(z DDV)</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800"><p id="sum_znesek">0</p></div>
+              </div>
+              <div class="col-sm" >
+                  <div class="card shadow mb-4" style="text-align: center">
+                      <a href="nfc.html" style="text-align: center">
+                        <img class="ikone" src="img/terminal.svg" />
+                        <p id="ikone_naslov">2. Prislonite telefon na terminal</p>
+                      </a>
                   </div>
-                  <div class="col-auto">
-                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+              </div>
+              <div class="col-sm">
+                  <div class="card shadow mb-4">
+                      <a href="#graf" style="text-align: center">
+                        <img class="ikone" src="img/analyse.svg"/>
+                        <p id="ikone_naslov">3. Preglejte in urejajte svoje izdatke!</p>
+                      </a>
                   </div>
-                </div>
               </div>
             </div>
           </div>
 
-          <!-- Output sum of DDV -->
-          <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-info shadow h-100 py-2">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-cyan text-uppercase mb-1">DVV vseh računov</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800"><p id="sum_ddv">0</p></div>
-                  </div>
-                  <div class="col-auto">
-                    <i class="fas fa-euro-sign fa-2x text-gray-300"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
+
+          <hr id="graf">
+          <div id="prostor"></div>
+          <div id="prostor"></div>
+          <div id="prostor"></div>
+          <div id="prostor"></div>
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <div>
+              <h1 class="h3 mb-0 text-gray-800">Izdatki v grafični obliki</h1>
+              <p class="h5 mb-4">Tukaj si lahko ogledate grafično upodobitev vaših izdatkov po mesecih.</p>
+            </div>  
+            <a href="#" class="d-block d-sm-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generiraj poročilo izdatkov</a>
           </div>
+          <!-- Content Row -->
+          <div class="row">
 
-          <!-- Earnings (Monthly) Card Example -->
-          <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Maksimalen izdatek</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800"><p id="maks_sum">0</p></div>
-                  </div>
-                  <div class="col-auto">
-                    <i class="fas fa-euro-sign fa-2x text-gray-300"></i>
+            <!-- Output with DDV -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Vsi vnešeni izdatki(z DDV)</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><p id="sum_znesek">0</p></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+
+            <!-- Output sum of DDV -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-cyan text-uppercase mb-1">DVV vseh računov</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><p id="sum_ddv">0</p></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-euro-sign fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Maksimalen izdatek</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><p id="maks_sum">0</p></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-euro-sign fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pending Requests Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Število dodanih računov</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><p id="st_rac">0</p></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-receipt fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>   
           </div>
+          <div id="prostor"></div>
+          <!-- Content Row -->
+          <div class="row">
+            <!-- Area Chart -->
+            <div class="col-xl-12">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Pregled nad izdatki</h6>
 
-          <!-- Pending Requests Card Example -->
-          <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-warning shadow h-100 py-2">
-              <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Število dodanih računov</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800"><p id="st_rac">0</p></div>
-                  </div>
-                  <div class="col-auto">
-                    <i class="fas fa-receipt fa-2x text-gray-300"></i>
+                  <div class="dropdown no-arrow">
+                      <select id="selectElementId">
+                      </select>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>   
-        </div>
-        <div id="prostor"></div>
-        <!-- Content Row -->
-        <div class="row">
-          <!-- Area Chart -->
-          <div class="col-xl-12">
-            <div class="card shadow mb-4">
-              <!-- Card Header - Dropdown -->
-              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Pregled nad izdatki</h6>
-
-                <div class="dropdown no-arrow">
-                    <select id="selectElementId">
-                    </select>
-                </div>
-              </div>
-              <!-- Card Body -->
-              <div id="prostor"></div>
-              <div class="card-body">
-                <div class="chart-area">
-                  <canvas id="myAreaChart"></canvas>
-                </div>
+                <!-- Card Body -->
                 <div id="prostor"></div>
-                <hr/>
-                V grafu si lahko ogledate svoje letne izdatke. V zgornjem desnem kotu okna lahko izberete leto prikazanih podatkov.
+                <div class="card-body">
+                  <div class="chart-area">
+                    <canvas id="myAreaChart"></canvas>
+                  </div>
+                  <div id="prostor"></div>
+                  <hr/>
+                  V grafu si lahko ogledate svoje letne izdatke. V zgornjem desnem kotu okna lahko izberete leto prikazanih podatkov.
+                </div>
               </div>
             </div>
           </div>
@@ -391,140 +456,139 @@
               <div id="prostor"></div>
             </div>
           </div>
-        </div>
-        <div id="prostor"></div>
-        <div id="prostor"></div>
-        <div id="prostor"></div>
-        <div id="prostor"></div>
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Ročno vnesite podatke o izdatku</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
+          <div id="prostor"></div>
+          <div id="prostor"></div>
+          <div id="prostor"></div>
+          <div id="prostor"></div>
+          <!-- Modal -->
+          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Ročno vnesite podatke o izdatku</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form data-toggle="validator" method="POST" action="/" role="form" id="preveri">
+                    <div class="form-group">
+                      <label for="inputName" class="control-label">Vnesite ime izdajatelja</label>
+                      <input type="text" class="form-control" id="ime" placeholder="Mercator" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputEmail" class="control-label">Vnesite celotni znesek računa</label>
+                      <input type="number" id="znesek" class="form-control" placeholder="Znesek računa" data-error="Prosim vnesite znesek računa z DDV" required>
+                      <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputEmail" class="control-label">Vnesite DDV</label>
+                      <input type="number" id="vn_ddv" class="form-control" placeholder="Znesek DDV" data-error="Prosim vnesite znesek DDV" required>
+                      <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputEmail" class="control-label">Datum izdatka</label>
+                      <input type="date" id="datum" class="form-control" data-error="Prosim vnesite znesek DDV" required>
+                      <div class="help-block with-errors"></div>
+                    </div>
+                  
+                    <div class="modal-footer">
+                      <button type="submit" id="dodaj" class="btn btn-primary">Dodaj</button>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Zapri</button>
+                    </div>
+                  </form>
+                </div>  
+                </div>
               </div>
-              <div class="modal-body">
-                <form data-toggle="validator" method="POST" action="/" role="form" id="preveri">
-                  <div class="form-group">
-                    <label for="inputName" class="control-label">Vnesite ime izdajatelja</label>
-                    <input type="text" class="form-control" id="ime" placeholder="Mercator" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputEmail" class="control-label">Vnesite celotni znesek računa</label>
-                    <input type="number" id="znesek" class="form-control" placeholder="Znesek računa" data-error="Prosim vnesite znesek računa z DDV" required>
-                    <div class="help-block with-errors"></div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputEmail" class="control-label">Vnesite DDV</label>
-                    <input type="number" id="vn_ddv" class="form-control" placeholder="Znesek DDV" data-error="Prosim vnesite znesek DDV" required>
-                    <div class="help-block with-errors"></div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputEmail" class="control-label">Datum izdatka</label>
-                    <input type="date" id="datum" class="form-control" data-error="Prosim vnesite znesek DDV" required>
-                    <div class="help-block with-errors"></div>
-                  </div>
-                 
-                  <div class="modal-footer">
-                    <button type="submit" id="dodaj" class="btn btn-primary">Dodaj</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Zapri</button>
-                  </div>
-                </form>
-              </div>  
-              </div>
+          </div>
+
+          <!-- Content Row -->
+          <div class="row">
+            <!-- Content Column -->
+            <div class="col-lg-12 mb-4">
+              <a class="float gumb" id="menu-share">
+                  <i class="fas fa-plus my-float"></i>
+              </a>
+              <ul class="list">
+                <li>
+                  <a class="gumb" id="gumb">
+                    <i class="fas fa-folder-open my-float" aria-hidden="true"></i>
+                    <input id="file_input" accept="text/xml" type="file" class="custom-file-input" multiple>		
+                  </a>
+                </li>
+                <li>
+                  <a class="gumb" data-toggle="modal"  data-target="#myModal">
+                    <i class="fas fa-pen-square my-float"></i>
+                  </a>
+                </li>
+                <li>
+                  <a class="gumb" href="nfc.html">
+                    <i class="fas fa-mobile-alt my-float"></i>
+                  </a>
+                </li>
+              </ul>
+
             </div>
+          </div>
         </div>
+      </div>
 
-        <!-- Content Row -->
-        <div class="row">
-          <!-- Content Column -->
-          <div class="col-lg-12 mb-4">
-            <a class="float gumb" id="menu-share">
-                <i class="fas fa-plus my-float"></i>
-            </a>
-            <ul class="list">
-              <li>
-                <a class="gumb" id="gumb">
-                  <i class="fas fa-folder-open my-float" aria-hidden="true"></i>
-                  <input id="file_input" accept="text/xml" type="file" class="custom-file-input" multiple>		
-                </a>
-              </li>
-              <li>
-                <a class="gumb" data-toggle="modal"  data-target="#myModal">
-                  <i class="fas fa-pen-square my-float"></i>
-                </a>
-              </li>
-              <li>
-                <a class="gumb" href="nfc.html">
-                  <i class="fas fa-mobile-alt my-float"></i>
-                </a>
-              </li>
-            </ul>
-
+      <!-- Logout Modal-->
+      <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Bi se res radi izpisali?</h5>
+              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">Kliknite izpis, da se izpišete iz svojega uporabniškega računa</div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">Prekliči</button>
+              <a class="btn btn-primary" href="login.html">Izpis</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
+      <script src="cordova.js"></script>
+      <!-- Bootstrap core JavaScript-->
+      <script src="vendor/jquery/jquery.js"></script>
+      <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script src="js/index.js"></script>
+      <!-- Core plugin JavaScript-->
+      <script type="text/javascript" src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Bi se res radi izpisali?</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">Kliknite izpis, da se izpišete iz svojega uporabniškega računa</div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Prekliči</button>
-            <a class="btn btn-primary" href="login.html">Izpis</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-    <script src="cordova.js"></script>
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.js"></script>
-    <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="js/index.js"></script>
-    <!-- Core plugin JavaScript-->
-    <script type="text/javascript" src="vendor/jquery-easing/jquery.easing.min.js"></script>
+      <!-- Page level plugins -->
+      <script src="vendor/chart.js/Chart.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.js"></script>
+      <!-- Page level custom scripts -->
+      <script type="text/javascript" src="js/receipts.js"></script>
+      <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+      <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+      <script src="vendor/validator/validator.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script type="text/javascript" src="js/receipts.js"></script>
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-    <script src="vendor/validator/validator.min.js"></script>
-
-    <script src="js/cookieconsent.min.js"></script>
-    <script>
-      window.cookieconsent.initialise({
-        "palette": {
-          "popup": {
-            "background": "#00264d"
+      <script src="js/cookieconsent.min.js"></script>
+      <script>
+        window.cookieconsent.initialise({
+          "palette": {
+            "popup": {
+              "background": "#00264d"
+            },
+            "button": {
+              "background": "#24977e"
+            }
           },
-          "button": {
-            "background": "#24977e"
+          "theme": "classic",
+          "position": "top",
+          "content": {
+            "message": "Spletna stran uporablja piškotke, ki hranijo podatke za lažjo uporabo.",
+            "dismiss": "Razumem.",
+            "link": "Več",
+            "href": "/vec.html"
           }
-        },
-        "theme": "classic",
-        "position": "top",
-        "content": {
-          "message": "Spletna stran uporablja piškotke, ki hranijo podatke za lažjo uporabo.",
-          "dismiss": "Razumem.",
-          "link": "Več",
-          "href": "/vec.html"
-        }
-      });
-    </script>
-</body>
+        });
+      </script>
+  </body>
 </html>
