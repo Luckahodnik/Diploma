@@ -5,19 +5,19 @@ const Uporabnik = require('./Uporabnik.js');
 
 let Racun = seq.define('racuni',{
   // attributes
-  uporabniskiHash: {
-    field: 'uporabniski_hash',
-    type: Sequelize.BLOB('tiny'),
+  uporabnikId: {
+    field: 'uporabnik_id',
+    type: Sequelize.UUID,
     allowNull: false,
     references: {
       model: Uporabnik,
-      key: 'uporabniski_hash',
+      key: 'id',
      // deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
     }
   },
 
   idRacuna:{
-    field: 'id_racuna',
+    field: 'id',
     primaryKey: true,
     type: Sequelize.UUID,
     defaultValue: Sequelize.UUIDV1,
@@ -51,6 +51,18 @@ let Racun = seq.define('racuni',{
   XMLPath: {
     field: 'xml_path',
     type: Sequelize.STRING,
+    allowNull: true,
+  },
+
+  createdAt: {
+    field: 'created_at',
+    type: 'TIMESTAMP',
+    allowNull: true,
+  },
+
+  updatedAt: {
+    field: 'updated_at',
+    type: 'TIMESTAMP',
     allowNull: true,
   }
   

@@ -158,16 +158,11 @@ var app = {
           }
        },
        showRecord: function(record) {
-          if (nfc.bytesToString(record.type) === "Sp") {
-             var ndefMessage = ndef.decodeMessage(record.payload);
-             app.showMessage(ndefMessage);
-          } else {
              var obj = JSON.parse(nfc.bytesToString(record.payload.splice(3)));
              //app.display(obj);
              for(var x=0; x < obj.length; x++){
                   app.display(Object.values(obj[x]));
                   lineBreak = document.createElement("br");
              }
-          }
-       }
+            }
     };     
