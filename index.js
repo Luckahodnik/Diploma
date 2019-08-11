@@ -96,10 +96,10 @@ dockerCompose.ps({}).then(
 const dataPath = path.join(__dirname, 'app', 'data');
 const usersPath = path.join(dataPath, 'users');
 if (!fs.existsSync(dataPath)) {
-    fs.mkdir(dataPath);
+    fs.mkdir(dataPath, (err) => {});
 }
 if (!fs.existsSync(usersPath)) {
-    fs.mkdir(usersPath);
+    fs.mkdir(usersPath, (err) => {});
 }
 
 // =============================================================================
