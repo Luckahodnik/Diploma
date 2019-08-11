@@ -8,7 +8,6 @@ function deleteRow(r) {
 }
 
 $(document).ready(function () {
-	
 	fileSelector();
 	updateOnKeypress();
 	$('#myModal').on('shown.bs.modal', function () {
