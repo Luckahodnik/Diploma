@@ -226,7 +226,6 @@
           </div>
         </div>
 
-
         <hr id="graf">
         <div id="prostor"></div>
         <div id="prostor"></div>
@@ -517,7 +516,9 @@
           <div class="modal-body">Kliknite izpis, da se izpišete iz svojega uporabniškega računa</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Prekliči</button>
-            <a class="btn btn-primary" href="login.html">Izpis</a>
+            <form action="/logout" method="POST">
+              <button class="btn btn-primary" type="submit">Izpis</button>
+            </form>
           </div>
         </div>
       </div>
