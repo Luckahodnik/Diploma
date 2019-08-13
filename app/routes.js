@@ -7,63 +7,71 @@ const fileUpload = require('express-fileupload');
 
 const bodyParser = require('body-parser');
 
-// =============================================================================
-// Passport with local strategy ================================================
-// =============================================================================
-const passport = require('passport');
-
-module.exports = function(app, express) {
+module.exports = function(app, express, handlers) {
 
     // =========================================================================
     // HOME PAGE ===============================================================
     // =========================================================================
-    app.get('/', (req, res) => {
-            res.sendFile(path.join(__dirname,'../www/index.html'))
-        }
-    );
+    app.get('/', handlers.verifyToken, (req, res) => {
+        if (req.decoded)
+            res.sendFile(path.join(__dirname,'../www/index.html'));
+        else
+            res.redirect('/login');
+    });
 
     // =========================================================================
     // REGISTER ================================================================
     // =========================================================================
-    app.post('/register', (req, res) => {
-            register()
-        }
-    );
+    app.post('/register', handlers.registerMiddleware);
     
     // =========================================================================
     // LOGIN ===================================================================
     // =========================================================================
-    app.post('/login', (req, res) => {
-            login()
-        }
-    );
+    app.post('/login', handlers.verifyToken, handlers.loginMiddleware);
+
+    // =========================================================================
+    // LOGOUT ==================================================================
+    // =========================================================================
+    app.post('/logout', handlers.verifyToken, handlers.logoutMiddleware);
 
     // =========================================================================
     // REGISTER PAGE ===========================================================
     // =========================================================================
-    app.get(['/register', '/register.html'], (req, res) => {
-        res.sendFile(path.join(__dirname, '../www/register.html'))
+    app.get(['/register', '/register.html'], handlers.verifyToken, (req, res) => {
+        if (req.decoded)
+            res.redirect('/');
+        else
+            res.sendFile(path.join(__dirname, '../www/register.html'));
     });
 
     // =========================================================================
     // LOGIN PAGE ==============================================================
     // =========================================================================
-    app.get(['/login', '/login.html'], (req, res) => {
-        res.sendFile(path.join(__dirname, '../www/login.html'))
+    app.get(['/login', '/login.html'], handlers.verifyToken, (req, res) => {
+        if (req.decoded)
+            res.redirect('/');
+        else
+            res.sendFile(path.join(__dirname, '../www/login.html'));
     });
 
     // =========================================================================
     // NFC/NDEF READER PAGE ====================================================
     // =========================================================================
-    app.get(['/nfc', '/nfc.html'], (req, res) => {
-        res.sendFile(path.join(__dirname, '../www/nfc.html'))
+    app.get(['/nfc', '/nfc.html'], handlers.verifyToken, (req, res) => {
+        if (req.decoded)
+            res.sendFile(path.join(__dirname, '../www/nfc.html'));
+        else
+            res.redirect('/');
     });
 
     // =========================================================================
     // MORE PAGE ===============================================================
     // =========================================================================
-    app.get(['/vec', '/vec.html'], (req, res) => {
-        res.sendFile(path.join(__dirname, '../www/vec.html'))
+    app.get(['/vec', '/vec.html'], handlers.verifyToken, (req, res) => {
+        if (req.decoded)
+            res.sendFile(path.join(__dirname, '../www/vec.html'));
+        else
+            res.redirect('/');
     });
     
     // =========================================================================

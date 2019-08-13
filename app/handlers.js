@@ -36,7 +36,23 @@ const crypto = require('crypto');
 // Universally unique identifier generator module and secret ===================
 // =============================================================================
 const uuidv5 = require('uuid/v5');
+const uuidv4 = require('uuid/v4');
+
+// =============================================================================
+// Secret key ==================================================================
+// =============================================================================
+const SECRET = 'diplomasecret';
+
+
+// =============================================================================
+// Namespace unique identifier =================================================
+// =============================================================================
 const NAMESPACE_UUID = 'e36a80cb-7780-4b62-afbf-e684dc24419a';
+
+// =============================================================================
+// JSON Web Token library ======================================================
+// =============================================================================
+let jwt = require('jsonwebtoken');
 
 module.exports = (app, express, db) => {
     
@@ -52,7 +68,7 @@ module.exports = (app, express, db) => {
     app.use(
         session(
             { 
-                secret: 'skrivni kljuc',
+                secret: SECRET,
                 resave: true, 
                 saveUninitialized:true
             }
@@ -85,24 +101,143 @@ module.exports = (app, express, db) => {
     app.engine('handlebars', exphbs());
     app.set('view engine', 'handlebars');
 
-
     // =========================================================================
-    // SERIALIZE USER ==========================================================
+    // VERIFY BEARER TOKEN =====================================================
     // =========================================================================
-    function serializeUser(uporabnik, done) {
+    function verifyToken(req, res, next) {
+        let token = req.headers['x-access-token'] || 
+            req.headers['authorization'];
 
+        if (!token)
+            token = req.cookies.Authorization;
+
+        if (token) {
+            if (token.startsWith('Bearer ')) {
+                token = token.slice(7, token.length);
+            }
+
+            jwt.verify(token, SECRET, (err, decoded) => {
+                if (err) {
+                    /*
+                    return res.json({
+                        success: false,
+                        message: 'Token is not valid'
+                    });
+                    */
+                    next();
+                } else {
+                    req.decoded = decoded;
+                    next();
+                }
+            });
+        } else {
+            /*
+            return res.json({
+                success: false,
+                message: 'Auth token is not supplied'
+            });
+            */
+            next();
+        }
     };
 
-    // =========================================================================
-    // DESERIALIZE USER ========================================================
-    // =========================================================================
-    function deserializeUser(id, done) {
+    function registerMiddleware (req, res, next) {
+
+        const name = req.body.name;
+        const surname = req.body.surname;
+        const email = req.body.email;
+        const password = req.body.password;
+        const passwordCheck = req.body.passwordCheck;
+
+        if (!name || !surname){
+            return;
+        }
+
+        if (!email){
+            return;
+        }
+
+        if (!password){
+            return;
+        }
+
+        if (password !== passwordCheck){
+            return;
+        }
+
         Uporabnik.findOne({
-            where: { id: id }
-        }).then( (uporabnik) => {
-            console.log("FOUND??");
-            console.log(uporabnik.dataValues);
+            where: {
+                id: uuidv5(email, NAMESPACE_UUID).toString()
             }
-        )
+        }).then(uporabnik => {
+            if (uporabnik){
+                return res.redirect('/login');
+            } else {
+                let salt = uuidv4();
+                Uporabnik.create(
+                    {
+                        id : uuidv5(email, NAMESPACE_UUID).toString(),
+                        gesloSalt: salt.toString(),
+                        gesloHash: uuidv5(password, salt).toString(),
+                        ime: name,
+                        priimek: surname,
+                        email: email
+                    }
+                ).then(uporabnik => {
+                    let token = jwt.sign(
+                        { email: email }, SECRET, { expiresIn: '24h' }
+                    );
+                    db.sync();
+                    res.cookie('Authorization', 'Bearer ' + token);
+                    res.setHeader('Authorization', 'Bearer ' + token);
+                    return res.redirect('/');
+                })
+            }
+        });
+
     }
+
+    function loginMiddleware (req, res, next) {
+        const email = req.body.email;
+        const password = req.body.password;
+        if (email && password) {
+            Uporabnik.findOne({
+                where: {
+                    id: uuidv5(email, NAMESPACE_UUID).toString()
+                }
+            }).then(uporabnik => {
+                if (uporabnik){
+                    let data = uporabnik.get({ plain: true });
+                    let genHash = uuidv5(password, data.gesloSalt);
+                    if (data.gesloHash !== genHash){
+                        return res.redirect('/login');
+                    } else {
+                        let token = jwt.sign(
+                            { email: email }, SECRET, { expiresIn: '24h' }
+                        );
+                        res.cookie('Authorization', 'Bearer ' + token);
+                        res.setHeader('Authorization', 'Bearer ' + token);
+                        return res.redirect('/');
+                    }
+                } else {
+                    return res.redirect('/login');
+                }
+            });
+        } else {
+            return res.redirect('/login');
+        }
+    }
+
+    function logoutMiddleware (req, res, next) {
+        if (req.decoded)
+            res.clearCookie('Authorization');
+        return res.redirect('/login');
+    }
+
+    return {
+        verifyToken: verifyToken,
+        registerMiddleware: registerMiddleware,
+        loginMiddleware: loginMiddleware,
+        logoutMiddleware: logoutMiddleware
+    };
 };

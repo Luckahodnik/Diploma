@@ -44,8 +44,8 @@ exceptionHandler.handle();
 // =============================================================================
 // Require handlers and routes =================================================
 // =============================================================================
-require('./app/handlers.js')(app, express, db);
-require('./app/routes.js')(app, express);
+const handlers = require('./app/handlers.js')(app, express, db);
+require('./app/routes.js')(app, express, handlers);
 
 // =============================================================================
 // Initialize sequelize database connection ====================================
