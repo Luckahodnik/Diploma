@@ -269,24 +269,27 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 
 // Area Chart Example
 var ctx = document.getElementById("myAreaChart");
-aggregateByMonths();
 var myLineChart = new Chart(ctx, {
-	type: 'line',
+	type: 'bar',
 	data: {
 		labels: ["Jan", "Feb", "Mar", "Apr", "Maj", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"],
 		datasets: [{
 			label: "Izdatki",
 			lineTension: 0.3,
-			backgroundColor: "rgba(78, 115, 223, 0.05)",
-			borderColor: "rgba(78, 115, 223, 1)",
-			pointRadius: 3,
-			pointBackgroundColor: "rgba(78, 115, 223, 1)",
-			pointBorderColor: "rgba(78, 115, 223, 1)",
-			pointHoverRadius: 3,
-			pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-			pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-			pointHitRadius: 10,
-			pointBorderWidth: 2,
+			backgroundColor:[  
+				"rgba(255, 99, 132, 0.8)",
+				"rgba(255, 159, 64, 0.8)",
+				"rgba(255, 205, 86, 0.8)",
+				"rgba(75, 192, 192, 0.8)",
+				"rgba(54, 162, 235, 0.8)",
+				"rgba(153, 102, 255, 0.8)",
+				"rgba(201, 203, 207, 0.8)",
+				"rgba(255, 99, 132, 0.8)",
+				"rgba(215, 159, 64, 0.8)",
+				"rgba(255, 243, 86, 0.8)",
+				"rgba(175, 195, 192, 0.8)",
+				"rgba(48, 162, 235, 0.8)",
+			 ],
 			data: dictMesecev,
 		}],
 	},
@@ -296,12 +299,13 @@ var myLineChart = new Chart(ctx, {
 			padding: {
 				left: 10,
 				right: 25,
-				top: 25,
-				bottom: 0
+				top: 30,
+				bottom: 5
 			}
 		},
 		scales: {
 			xAxes: [{
+				stacked: true,
 				time: {
 					unit: 'date'
 				},
@@ -311,6 +315,7 @@ var myLineChart = new Chart(ctx, {
 				},
 			}],
 			yAxes: [{
+				stacked: true,
 				ticks: {
 					beginAtZero: true,
 					maxTicksLimit: 5,
@@ -355,3 +360,4 @@ var myLineChart = new Chart(ctx, {
 	}
 
 });
+aggregateByMonths();
