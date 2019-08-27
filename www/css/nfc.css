@@ -19,13 +19,12 @@
     }
     .app{
         color:black;
-        margin:10px;
     }
 
     #messageDiv{
         margin:0px;
+        padding:0px;
     }
-
     #nfc{
         width:50%;
     }

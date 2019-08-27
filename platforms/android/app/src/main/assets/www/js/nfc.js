@@ -86,7 +86,7 @@ var app = {
       onNfc: function(nfcEvent) {
          app.clear();              // clear the message div
          // display the event type:
-         app.display("Tip NFC značke: " + nfcEvent.type);
+        // app.display("Tip NFC značke: " + nfcEvent.type);
          app.showTag(nfcEvent.tag);   // display the tag details
       },
       
@@ -126,8 +126,8 @@ var app = {
          var thisMessage = tag.ndefMessage;
          if (thisMessage !== null) {
             // get and display the NDEF record count:
-            app.display("Prejetih " + thisMessage.length
-               + " sporočil");
+            //app.display("Prejetih " + thisMessage.length
+             //  + " sporočil");
             // switch is part of the extended example
             var type =  nfc.bytesToString(thisMessage[0].type);
             switch (type) {
@@ -147,8 +147,8 @@ var app = {
                   app.display("To je AAR vrsta");
                   break;
                default:
-                  app.display("Vrsta sporočila: " +
-                     type);
+                  //app.display("Vrsta sporočila: " +
+                  //   type);
                   break;
             }
             // end of extended example
@@ -187,6 +187,7 @@ var app = {
                      // FILE
                      
                      app.display("Ime datoteke: " + filename);
+                     app.display(" ");
                      objXML = processXML(content);
                      app.display("Ime izdajatelja: " + objXML.name);
                      app.display("Datum: " + (objXML.datum).toLocaleString());
