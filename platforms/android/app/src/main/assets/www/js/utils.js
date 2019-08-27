@@ -1,9 +1,7 @@
-function processXML(xmlStr, display) {
+function processXML(xmlStr) {
 	let parser = new DOMParser();
     let xmlRep = xmlStr.replace(/xmlns(:.+)?=".+"/g, '');
-    display("HERE");
     let xmlDoc = parser.parseFromString(xmlRep, "text/xml");
-    display("PARSED");
 	let retObj = {};
 
 	while (xmlDoc.firstChild.attributes.length > 0)
@@ -13,8 +11,6 @@ function processXML(xmlStr, display) {
 	var znesek = xmlDoc.evaluate("/Invoice/M_INVOIC/G_SG50[S_MOA/C_C516/D_5025='9']/S_MOA/C_C516/D_5004/text()", xmlDoc, null, XPathResult.STRING_TYPE, null);
 	var ddv = xmlDoc.evaluate("/Invoice/M_INVOIC/G_SG50[S_MOA/C_C516/D_5025='176']/S_MOA/C_C516/D_5004/text()", xmlDoc, null, XPathResult.STRING_TYPE, null);
 	var datum = xmlDoc.evaluate("/Invoice/M_INVOIC/S_DTM[C_C507/D_2005='137']/C_C507/D_2380/text()", xmlDoc, null, XPathResult.STRING_TYPE, null);
-    
-    display("EVALUATED");
     
 	if (ime.stringValue != null) {
 		retObj["name"] = ime.stringValue;

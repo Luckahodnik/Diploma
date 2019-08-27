@@ -55,7 +55,7 @@ var app = {
             "text/plain",
             app.onNfc,               // tag successfully scanned
             function (status) {      // listener successfully initialized
-               app.display("Poslušanje za MIME type");
+               app.display("Poslušanje za MIME vrsto");
             },
             function (error) {       // listener fails to initialize
                app.display("NFC bralec se ni inicaliziral "
@@ -128,7 +128,6 @@ var app = {
             // get and display the NDEF record count:
             app.display("Prejetih " + thisMessage.length
                + " sporočil");
-            app.display("Tip sporočila:")
             // switch is part of the extended example
             var type =  nfc.bytesToString(thisMessage[0].type);
             switch (type) {
@@ -148,7 +147,7 @@ var app = {
                   app.display("To je AAR vrsta");
                   break;
                default:
-                  app.display("Neznana vrsta " +
+                  app.display("Vrsta sporočila: " +
                      type);
                   break;
             }
@@ -186,12 +185,13 @@ var app = {
                Object.keys(contents.files).forEach(function(filename) {
                   zip.file(filename).async("string").then(function(content) {
                      // FILE
-                     app.display(filename);
+                     
+                     app.display("Ime datoteke: " + filename);
                      objXML = processXML(content);
-                     app.display(objXML.name);
-                     app.display(objXML.datum);
-                     app.display(objXML.znesek);
-                     app.display(objXML.ddv);
+                     app.display("Ime izdajatelja: " + objXML.name);
+                     app.display("Datum: " + (objXML.datum).toLocaleString());
+                     app.display("Znesek: " + objXML.znesek + "€");
+                     app.display("DDV: " + objXML.ddv + "€");
                   });
               });
            });
