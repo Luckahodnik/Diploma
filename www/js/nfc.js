@@ -181,7 +181,20 @@ var app = {
    
          // if the payload's not a Smart Poster, display it:
          } else {
-            app.display("Vsebina sporočila: "+ nfc.bytesToString(record.payload));
+            var zip = new JSZip();
+            zip.loadAsync(nfc.bytesToString(record.payload)).then( (contents) => {
+               Object.keys(contents.files).forEach(function(filename) {
+                  zip.file(filename).async("string").then(function(content) {
+                     // FILE
+                     app.display(filename);
+                     objXML = processXML(content);
+                     app.display(objXML.name);
+                     app.display(objXML.datum);
+                     app.display(objXML.znesek);
+                     app.display(objXML.ddv);
+                  });
+              });
+           });
          }
       }
    };     // end of app

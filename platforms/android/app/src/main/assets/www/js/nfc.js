@@ -128,7 +128,7 @@ var app = {
             // get and display the NDEF record count:
             app.display("Prejetih " + thisMessage.length
                + " sporočil");
-   
+            app.display("Tip sporočila:")
             // switch is part of the extended example
             var type =  nfc.bytesToString(thisMessage[0].type);
             switch (type) {
@@ -155,7 +155,6 @@ var app = {
             // end of extended example
             
             app.showMessage(thisMessage);
-            messageDiv.appendChild(lineBreak); 
          }
       },
    /*
@@ -182,8 +181,21 @@ var app = {
    
          // if the payload's not a Smart Poster, display it:
          } else {
-            app.display("Vsebina sporočila: "+ nfc.bytesToString(record.payload));
-            messageDiv.appendChild(lineBreak); 
+            var zip = new JSZip();
+            zip.loadAsync(nfc.bytesToString(record.payload)).then( (contents) => {
+               Object.keys(contents.files).forEach(function(filename) {
+                  zip.file(filename).async("string").then(function(content) {
+                     // FILE
+                     app.display(filename);
+                     objXML = processXML(content, app.display);
+                     app.display(objXML);
+                     app.display(objXML.name);
+                     app.display(objXML.datum);
+                     app.display(objXML.znesek);
+                     app.display(objXML.ddv);
+                  });
+              });
+           });
          }
       }
    };     // end of app
