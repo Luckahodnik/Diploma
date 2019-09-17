@@ -48,10 +48,10 @@ let Racun = seq.define('racuni',{
     allowNull: true,
   },
 
-  XMLPath: {
-    field: 'xml_path',
+  XMLName: {
+    field: 'xml_name',
     type: Sequelize.STRING,
-    allowNull: true,
+    allowNull: false,
   },
 
   createdAt: {

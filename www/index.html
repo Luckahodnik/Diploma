@@ -34,6 +34,7 @@
   <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
   <link rel="stylesheet" type="text/css" href="css/cookieconsent.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/jquery.toast.css" />
 </head>
 
 <body id="page-top">
@@ -371,49 +372,27 @@
                   <div id="prostor"></div>
               <thead>
                 <tr>
+                  <th>Id racuna</th>
+                  <th>Ime dokumenta</th>
                   <th>Ime izdajatelja</th>
                   <th>Celoten znesek računa</th>
                   <th>DDV</th>
                   <th>Datum izdatka</th>
                   <th></th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                    <td>ZZI d.o.o.</td>
-                    <td>1435</td>
-                    <td>258</td>
-                    <td>12/03/2018</td>
-                    <td><input type="button" value="X" onclick="deleteRow(this)"></td>
-                  </tr>
-                  <tr>
-                    <td>GEN-I, d.o.o.</td>
-                    <td>112</td>
-                    <td>20</td>
-                    <td>11/05/2018</td>
-                    <td><input type="button" value="X" onclick="deleteRow(this)"></td>
-                  </tr>
-                  <tr>
-                    <td>Družba Vodovod, d.o.o.</td>
-                    <td>24</td>
-                    <td>2</td>
-                    <td>30/11/2017</td>
-                    <td><input type="button" value="X" onclick="deleteRow(this)"></td>
-                  </tr>
-                  <tr>
-                    <td>SellerCompany</td>
-                    <td>2337</td>
-                    <td>675</td>
-                    <td>10/04/2013</td>
-                    <td><input type="button" value="X" onclick="deleteRow(this)"></td>
-                </tr>
               </tbody>
               <tfoot>
                 <tr>
+                  <th>Id racuna</th>
+                  <th>Ime dokumenta</th>
                   <th>Ime izdajatelja</th>
                   <th>Celoten znesek računa</th>
                   <th>DDV</th>
                   <th>Datum izdatka</th>
+                  <th></th>
                   <th></th>
                 </tr>
               </tfoot>
@@ -526,7 +505,9 @@
   </div>
   <script src="cordova.js"></script>
   <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.js"></script>
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="js/jquery.toast.js"></script>
+  <script src="cordova.js"></script>
   <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="js/index.js"></script>
   <!-- Core plugin JavaScript-->

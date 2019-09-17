@@ -54,11 +54,11 @@ function authDB(){
     db.authenticate()
     .then(() => {
             console.log('Connection has been established successfully.');
-            Racun.sync().then(() => {
-                console.log('Created table for Racun model');
-            });
             Uporabnik.sync().then(() => {
                 console.log('Created table for Uporabnik model');
+            });
+            Racun.sync().then(() => {
+                console.log('Created table for Racun model');
             });
         }
     )
@@ -73,7 +73,7 @@ function authDB(){
 function upOne(){
     dockerCompose.upAll({ cwd: path.join(__dirname), log: true})
     .then(
-        () => setTimeout(authDB, 5000),
+        () => setTimeout(authDB, 8000),
         err => console.log('something went wrong:', err.message)
     );
 }

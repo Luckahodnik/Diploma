@@ -1,10 +1,37 @@
 let vsota = 0;
 let vsotaDDV = 0;
-let arrayPodatkov = [];
+let podatki = {};
 var chart = null;
+
+let deleteEl = '<td><input type="button" value="X" onclick="deleteRow(this)"></td>';
+let downloadEl = '<td><form method="get" action="/xmls/%ACTION%"><button type="submit">Download</button></form></td>';
+
 function deleteRow(r) {
-	var i = r.parentNode.parentNode.rowIndex;
-	document.getElementById("dataTable").deleteRow(i);
+	let dataTable = $('#dataTable').DataTable();
+
+	let row = dataTable.row(r.parentNode.parentNode);
+	let id = row.data()[0];
+	$.ajax( {'url': "/xmls/" + id, method: "DELETE"})
+	.done( () => {
+		row.remove();
+		$.toast({
+			heading: 'Information',
+			text: 'File removed successfully',
+			showHideTransition: 'slide',
+			icon: 'info'
+		});
+		dataTable.draw();
+		delete podatki[id];
+		aggregateByMonths();
+	})
+	.fail( (err) => {
+		$.toast({
+			heading: 'Error',
+			text: err.responseText,
+			showHideTransition: 'slide',
+			icon: 'error'
+		})
+	});
 }
 
 $(document).ready(function () {
@@ -24,7 +51,32 @@ $(document).ready(function () {
 			$("#myModal").modal("hide");
 		}
 	})
-	$('#dataTable').DataTable();
+	let dataTable = $('#dataTable').DataTable( {
+		"columnDefs": [
+			{ "visible": false, "targets": [0,1] }
+		]
+	});
+
+	$.ajax( {'url': "/xmls", method: "GET"})
+	.done( (data) => {
+		if(data && data.length){
+			data.forEach( (racun, index, arr) => {
+				dataTable.row.add( [racun.idRacuna, racun.XMLName, racun.izdajateljRacuna, racun.znesek, racun.ddv, racun.datum, 
+					deleteEl, racun.XMLName? downloadEl.replace('%ACTION%', racun.idRacuna) : null] );
+				podatki[racun.idRacuna] = racun;
+			});
+			aggregateByMonths();
+			dataTable.draw();
+		}
+	})
+	.fail( (err) => {
+		$.toast({
+			heading: 'Warning',
+			text: err.responseText,
+			showHideTransition: 'slide',
+			icon: 'warning'
+		})
+	});
 });
 
 function fileSelector() {
@@ -47,17 +99,41 @@ function fileSelector() {
 
 				reader.addEventListener('load', function (e) {
 					let returnedObject = processXML(e.target.result);
-					/*$.post( "xml",
-									{'name' : returnedObject['name'],
-										'timestamp' : returnedObject['datum'].toISOString().slice(0, 10),
-										'amount' : returnedObject['znesek'],
-										'raw_xml_data' : e.target.result }
-					);*/
-					arrayPodatkov.push(returnedObject);
+					console.log(returnedObject);
+					let timestamp = returnedObject['datum'];
+					if (timestamp && !isNaN(timestamp.getTime())){
+						timestamp = timestamp.toISOString().slice(0, 10);
+					} else {
+						timestamp = null;
+					}
+					var formData = new FormData();
+					formData.set('raw_xml_data', new Blob([e.target.result], {'type' : 'text/xml'}), file.name);
+					$.ajax( {'url': "/xmls", method: "POST", 'data' : formData,
+						processData: false, contentType: false
+					}).done( (racun) => {
+						let dataTable = $('#dataTable').DataTable();
+						dataTable.row.add( [racun.idRacuna, racun.XMLName, racun.izdajateljRacuna, racun.znesek, racun.ddv, racun.datum, 
+							deleteEl, downloadEl.replace('%ACTION%', racun.idRacuna)] );
+						dataTable.draw();
+						podatki[racun.idRacuna] = racun;
+						aggregateByMonths();
+						$.toast({
+							heading: 'Success',
+							text: 'File uploaded successfully',
+							showHideTransition: 'slide',
+							icon: 'success'
+						});
+					})
+					.fail( (err) => {
+						$.toast({
+							heading: 'Warning',
+							text: err.responseText,
+							showHideTransition: 'slide',
+							icon: 'warning'
+						})
+					});
 
 					aggregateByMonths();
-					renderTable();
-					myLineChart.update();
 
 				});
 				reader.readAsText(file);
@@ -69,37 +145,6 @@ function fileSelector() {
 }
 
 
-function renderTable() {
-	const tabelaEl = document.getElementById('dataTable');
-	const tbodyEl = tabelaEl.getElementsByTagName('tbody')[0];
-	tbodyEl.innerHTML = "";
-	vsota = 0;
-	vsotaDDV = 0;
-	arrayPodatkov.forEach(function (obj, idx) {
-		let trEl = document.createElement("tr");
-		let tdZnesekEl = document.createElement("td");
-		let tdDatumEl = document.createElement("td");
-		let tdDdvEl = document.createElement("td");
-		let tdNameEl = document.createElement("td");
-		tdNameEl.innerText = obj["name"];
-		tdZnesekEl.innerText = obj["znesek"];
-		tdDdvEl.innerText = obj["ddv"];
-		tdDatumEl.innerText = obj["datum"].toLocaleDateString('en-GB');
-		trEl.appendChild(tdNameEl);
-		tbodyEl.appendChild(trEl);
-		trEl.appendChild(tdZnesekEl);
-		tabelaEl.appendChild(trEl);
-		trEl.appendChild(tdDdvEl);
-		tbodyEl.appendChild(trEl);
-		trEl.appendChild(tdDatumEl);
-		tbodyEl.appendChild(trEl);
-		vsota += obj["znesek"];
-		vsotaDDV += obj["ddv"];
-	});
-	updateIzdatke();
-	myLineChart.update();
-}
-
 function updateIzdatke() {
 	const maksEl = document.getElementById("maks_sum");
 	maksEl.innerHTML = parseInt(maks).toFixed(2) + "€";
@@ -108,7 +153,8 @@ function updateIzdatke() {
 	const ddvEl = document.getElementById("sum_ddv");
 	ddvEl.innerHTML = vsotaDDV.toFixed(2) + "€";
 	const stEl = document.getElementById("st_rac");
-	stEl.innerHTML = arrayPodatkov.length;
+	stEl.innerHTML = Object.keys(podatki).length;
+	myLineChart.update();
 }
 
 function updateTable() {
@@ -116,7 +162,6 @@ function updateTable() {
 	const spentEl = document.getElementById('znesek');
 	const ddvEl = document.getElementById('vn_ddv');
 	const whenEl = document.getElementById('datum');
-
 
 	let racIn = spentEl.value;
 	let datIn = whenEl.value;
@@ -126,12 +171,39 @@ function updateTable() {
 		racIn = parseFloat(racIn);
 		ddvIn = parseFloat(ddvIn)
 		datIn = new Date(datIn);
-		if (datIn.getYear() == 119) {
-			let retObj = { "znesek": racIn, "ddv": ddvIn, "datum": datIn, "name": namIn };
-			arrayPodatkov.push(retObj);
+		
+		let retObj = { "znesek": racIn, "ddv": ddvIn, "datum": datIn, "ime": namIn };
+		
+		var formData = new FormData();
+        for ( var key in retObj ) {
+            formData.append(key, retObj[key]);
+        }
+
+		$.ajax( {'url': "/formdata", method: "POST", 'data' : formData,
+			processData: false, contentType: false
+		}).done( (racun) => {
+			let dataTable = $('#dataTable').DataTable();
+			dataTable.row.add( [racun.idRacuna, null, racun.izdajateljRacuna, racun.znesek, racun.ddv, racun.datum, 
+				deleteEl, null] );
+			dataTable.draw();
+			podatki[racun.idRacuna] = racun;
+			console.log(racun);
 			aggregateByMonths();
-			renderTable();
-		}
+			$.toast({
+				heading: 'Success',
+				text: 'Racun sent successfully',
+				showHideTransition: 'slide',
+				icon: 'success'
+			});
+		})
+		.fail( (err) => {
+			$.toast({
+				heading: 'Warning',
+				text: err.responseText,
+				showHideTransition: 'slide',
+				icon: 'warning'
+			})
+		});
 	}
 }
 
@@ -156,7 +228,6 @@ function updateOnKeypress() {
 	vpisiEl.addEventListener('keypress', funcOnKeypress);
 	ddvEl.addEventListener('keypress', funcOnKeypress);
 
-	//document.getElementById("delete").onclick = deleteFromTable;
 }
 
 var min = 2015,
@@ -194,11 +265,19 @@ function aggregateByMonths() {
 		dict[month[m]] = [];
 	}
 
-	for (let x in arrayPodatkov) {
-		dict[month[arrayPodatkov[x].datum.getMonth()]].push(arrayPodatkov[x].znesek);
-		sum = dict[month[arrayPodatkov[x].datum.getMonth()]].reduce((previous, current) => current += previous);
-		dictMesecev[arrayPodatkov[x].datum.getMonth()] = sum;
-		
+	vsota = 0;
+	vsotaDDV = 0;
+	for (let k in dictMesecev){
+		dictMesecev[k] = 0;
+	}
+
+	for (let x in podatki) {
+		let dat = new Date(podatki[x].datum);
+		dict[month[dat.getMonth()]].push(podatki[x].znesek);
+		sum = dict[month[dat.getMonth()]].reduce((previous, current) => current += previous);
+		dictMesecev[dat.getMonth()] = sum;
+		vsota += podatki[x].znesek;
+		vsotaDDV += podatki[x].ddv;
 	}
 	for (x in dictMesecev) {
 		if (dictMesecev[x] >= maks) {
@@ -324,4 +403,3 @@ var myLineChart = new Chart(ctx, {
 	}
 
 });
-aggregateByMonths();

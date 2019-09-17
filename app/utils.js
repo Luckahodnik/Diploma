@@ -1,0 +1,40 @@
+module.exports = (DOMParser, XPath) => {
+	function processXML(xmlStr) {
+		let parser = new DOMParser();
+		let xmlRep = xmlStr.replace(/xmlns(:.+)?=".+"/g, '');
+		let xmlDoc = parser.parseFromString(xmlRep, "text/xml");
+		let retObj = {};
+
+		if(xmlDoc.firstChild && xmlDoc.firstChild.attributes && typeof xmlDoc.firstChild.attributes != 'undefined'){
+			while (xmlDoc.firstChild.attributes.length > 0)
+				xmlDoc.firstChild.removeAttribute(xmlDoc.firstChild.attributes[0].name);
+		}
+
+		var ime = XPath.evaluate("/Invoice/M_INVOIC/G_SG2[S_NAD/D_3035='SE']/S_NAD/C_C080/D_3036/text()", xmlDoc, null, XPath.XPathResult.STRING_TYPE, null);
+		var znesek = XPath.evaluate("/Invoice/M_INVOIC/G_SG50[S_MOA/C_C516/D_5025='9']/S_MOA/C_C516/D_5004/text()", xmlDoc, null, XPath.XPathResult.STRING_TYPE, null);
+		var ddv = XPath.evaluate("/Invoice/M_INVOIC/G_SG50[S_MOA/C_C516/D_5025='176']/S_MOA/C_C516/D_5004/text()", xmlDoc, null, XPath.XPathResult.STRING_TYPE, null);
+		var datum = XPath.evaluate("/Invoice/M_INVOIC/S_DTM[C_C507/D_2005='137']/C_C507/D_2380/text()", xmlDoc, null, XPath.XPathResult.STRING_TYPE, null);
+		
+		if (ime.stringValue != null) {
+			retObj["ime"] = ime.stringValue;
+		}
+
+		if (znesek.stringValue != null) {
+			retObj["znesek"] = parseInt(znesek.stringValue);
+		}
+
+		if (ddv.stringValue != null) {
+			retObj["ddv"] = parseInt(ddv.stringValue);
+		}
+
+		if (datum.stringValue != null) {
+			retObj["datum"] = new Date(datum.stringValue);
+		}
+
+		return retObj;
+	}
+
+	return {
+		processXML : processXML
+	};
+};
