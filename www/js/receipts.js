@@ -3,15 +3,17 @@ let vsotaDDV = 0;
 let podatki = {};
 var chart = null;
 
+let serverIP = "";
+
 let deleteEl = '<td><input type="button" value="X" onclick="deleteRow(this)"></td>';
-let downloadEl = '<td><form method="get" action="/xmls/%ACTION%"><button type="submit"> Prenos </button></form></td>';
+let downloadEl = '<td><form method="GET" action="%SERVER_IP%/xmls/%ACTION%"><button type="submit">Prenos</button></form></td>';
 
 function deleteRow(r) {
 	let dataTable = $('#dataTable').DataTable();
 
 	let row = dataTable.row(r.parentNode.parentNode);
 	let id = row.data()[0];
-	$.ajax( {'url': "/xmls/" + id, method: "DELETE"})
+	$.ajax( {'url': serverIP + "/xmls/" + id, method: "DELETE"})
 	.done( () => {
 		row.remove();
 		$.toast({
@@ -35,6 +37,9 @@ function deleteRow(r) {
 }
 
 $(document).ready(function () {
+
+	serverIP = $("#serverIP").html();
+
 	fileSelector();
 	updateOnKeypress();
 	$('#myModal').on('shown.bs.modal', function () {
@@ -57,11 +62,11 @@ $(document).ready(function () {
 		]
 	});
 
-	$.ajax( {'url': "/xmls", method: "GET"})
+	$.ajax( {'url': serverIP + "/xmls", method: "GET"})
 	.done( (data) => {
 		if(data && data.length){
 			data.forEach( (racun, index, arr) => {
-				let downloadElSpec = racun.XMLName? downloadEl.replace('%ACTION%', racun.idRacuna) : null;
+				let downloadElSpec = racun.XMLName? downloadEl.replace('%ACTION%', racun.idRacuna).replace('%SERVER_IP%', serverIP) : null;
 				dataTable.row.add( [racun.idRacuna, racun.XMLName, racun.izdajateljRacuna, racun.znesek, racun.ddv, racun.datum, 
 					downloadElSpec, deleteEl ] );
 				podatki[racun.idRacuna] = racun;
@@ -79,7 +84,8 @@ $(document).ready(function () {
 		})
 	});
 
-	$.ajax( {'url': "/users", method: "GET"})
+
+	$.ajax( {'url': serverIP + "/users", method: "GET"})
 	.done( (user) => {
 		$('#userDropdown>span').html(user.ime + " " + user.priimek);
 	})
@@ -90,6 +96,7 @@ $(document).ready(function () {
 			showHideTransition: 'slide',
 			icon: 'error'
 		})
+		window.location.replace($("#redirect").html());
 	});
 });
 
@@ -122,12 +129,12 @@ function fileSelector() {
 					}
 					var formData = new FormData();
 					formData.set('raw_xml_data', new Blob([e.target.result], {'type' : 'text/xml'}), file.name);
-					$.ajax( {'url': "/xmls", method: "POST", 'data' : formData,
+					$.ajax( {'url': serverIP + "/xmls", method: "POST", 'data' : formData,
 						processData: false, contentType: false
 					}).done( (racun) => {
 						let dataTable = $('#dataTable').DataTable();
 						dataTable.row.add( [racun.idRacuna, racun.XMLName, racun.izdajateljRacuna, racun.znesek, racun.ddv, racun.datum, 
-							downloadEl.replace('%ACTION%', racun.idRacuna), deleteEl] );
+							downloadEl.replace('%ACTION%', racun.idRacuna).replace('%SERVER_IP%', serverIP), deleteEl] );
 						dataTable.draw();
 						podatki[racun.idRacuna] = racun;
 						aggregateByMonths();
@@ -193,7 +200,7 @@ function updateTable() {
             formData.append(key, retObj[key]);
         }
 
-		$.ajax( {'url': "/formdata", method: "POST", 'data' : formData,
+		$.ajax( {'url': serverIP + "/formdata", method: "POST", 'data' : formData,
 			processData: false, contentType: false
 		}).done( (racun) => {
 			let dataTable = $('#dataTable').DataTable();
@@ -201,7 +208,6 @@ function updateTable() {
 				null, deleteEl] );
 			dataTable.draw();
 			podatki[racun.idRacuna] = racun;
-			console.log(racun);
 			aggregateByMonths();
 			$.toast({
 				heading: 'Izvedeno',

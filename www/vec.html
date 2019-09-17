@@ -27,6 +27,9 @@
   <link href="css/sb-admin-2.css" rel="stylesheet">
   <link href="css/mystyle.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="css/cookieconsent.min.css" />
+
+  <div id="serverIP">{{serverIP}}</div>
+  <div id="redirect">{{indexPage}}{{extension}}</div>
 </head>
 
 <body id="page-top">
@@ -51,7 +54,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="/">
+        <a class="nav-link" href="{{indexPage}}">
           <i class="fas fa-home"></i>
           <span>Domov</span></a>
       </li>
@@ -67,7 +70,7 @@
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="/">
+        <a class="nav-link" href="{{indexPage}}">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Računi</span>
         </a>
@@ -75,7 +78,7 @@
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="/">
+        <a class="nav-link" href="{{indexPage}}">
           <i class="fas fa-fw fa-table"></i>
           <span>Tabele</span>
         </a>

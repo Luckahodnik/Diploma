@@ -21,6 +21,9 @@
   <link href="css/mystyle.css" rel="stylesheet">
   <link rel="shortcut icon" type="image/png" href="img/logo.svg" />
   <link rel="stylesheet" type="text/css" href="css/jquery.toast.css" />
+
+  <div id="serverIP">{{serverIP}}</div>
+  <div id="redirect">{{indexPage}}{{extension}}</div>
 </head>
 
 <body class="bg-gradient-primary">
@@ -42,7 +45,7 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Dobrodošli!</h1>
                   </div>
-                  <form class="user" action="/login" method="POST">
+                  <form class="user" action="{{serverIP}}/{{loginPage}}" method="POST">
                     <div class="form-group">
                       <input type="email" name="email" class="form-control form-control-user" id="inputUsername"
                         aria-describedby="emailHelp" placeholder="E-naslov ali uporabniško ime">
@@ -66,7 +69,7 @@
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="small" href="/register">Registriraj se!</a>
+                    <a class="small" href="{{registerPage}}{{extension}}">Registriraj se!</a>
                   </div>
                 </div>
               </div>

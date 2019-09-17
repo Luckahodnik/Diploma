@@ -31,14 +31,14 @@ $( document ).ready(function() {
             processData: false, 
             contentType: false
         })
-        .done( ( msg ) => {
+        .done( ( msg, textStatus, xhr ) => {
             $.toast({
                 heading: 'Information',
                 text: 'Login successful',
                 showHideTransition: 'slide',
                 icon: 'info'
             });
-            window.location.replace("/");
+            window.location.replace($('#redirect').html());
         })
         .fail( (err) => {
             $.toast({

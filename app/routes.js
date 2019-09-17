@@ -7,14 +7,15 @@ const fileUpload = require('express-fileupload');
 
 const bodyParser = require('body-parser');
 
-module.exports = function(app, express, handlers) {
+module.exports = function(app, express, handlers, handlebarsData) {
 
     // =========================================================================
     // HOME PAGE ===============================================================
     // =========================================================================
     app.get('/', handlers.verifyToken, (req, res) => {
         if (req.decoded)
-            res.sendFile(path.join(__dirname,'../www/index.html'));
+            res.render('index', handlebarsData);
+            //res.sendFile(path.join(__dirname,'../www/index.html'));
         else
             res.redirect('/login');
     });
@@ -41,7 +42,8 @@ module.exports = function(app, express, handlers) {
         if (req.decoded)
             res.redirect('/');
         else
-            res.sendFile(path.join(__dirname, '../www/register.html'));
+            res.render('register', handlebarsData);
+            //res.sendFile(path.join(__dirname, '../www/register.html'));
     });
 
     // =========================================================================
@@ -51,7 +53,8 @@ module.exports = function(app, express, handlers) {
         if (req.decoded)
             res.redirect('/');
         else
-            res.sendFile(path.join(__dirname, '../www/login.html'));
+            res.render('login', handlebarsData);
+            //res.sendFile(path.join(__dirname, '../www/login.html'));
     });
 
     // =========================================================================
@@ -59,7 +62,8 @@ module.exports = function(app, express, handlers) {
     // =========================================================================
     app.get(['/nfc', '/nfc.html'], handlers.verifyToken, (req, res) => {
         if (req.decoded)
-            res.sendFile(path.join(__dirname, '../www/nfc.html'));
+            res.render('nfc', handlebarsData);
+            //res.sendFile(path.join(__dirname, '../www/nfc.html'));
         else
             res.redirect('/');
     });
@@ -69,7 +73,8 @@ module.exports = function(app, express, handlers) {
     // =========================================================================
     app.get(['/vec', '/vec.html'], handlers.verifyToken, (req, res) => {
         if (req.decoded)
-            res.sendFile(path.join(__dirname, '../www/vec.html'));
+            res.render('vec', handlebarsData)
+            //res.sendFile(path.join(__dirname, '../www/vec.html'));
         else
             res.redirect('/');
     });

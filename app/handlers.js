@@ -69,7 +69,7 @@ let XPath = require('xpath');
 let xmlutils = require('./utils.js')(DOMParser, XPath);
 
 
-module.exports = (app, express, db) => {
+module.exports = (app, express, db, handlebarsData) => {
     
     // =========================================================================
     // BODY PARSER =============================================================
@@ -113,8 +113,9 @@ module.exports = (app, express, db) => {
     // =========================================================================
     // HANDLEBARS VIEW ENGINE ==================================================
     // =========================================================================
-    app.engine('handlebars', exphbs());
-    app.set('view engine', 'handlebars');
+    app.engine('.html', exphbs({defaultLayout : '', layoutsDir : '', partialsDir : '', extname : '.html'}));
+    app.set('views', path.join(__dirname, '../www'));
+    app.set('view engine', '.html');
 
     // =========================================================================
     // VERIFY BEARER TOKEN =====================================================
@@ -245,7 +246,10 @@ module.exports = (app, express, db) => {
                         { email: email }, SECRET, { expiresIn: '24h' }
                     );
                     res.cookie('Authorization', 'Bearer ' + token);
+                    res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
+                    res.header('Pragma', 'no-cache');
                     res.setHeader('Authorization', 'Bearer ' + token);
+                    res.setHeader+('Access-Control-Expose-Headers', 'Authorization');
                     return res.redirect('/');
                 }
             } else {

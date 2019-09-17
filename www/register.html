@@ -22,10 +22,12 @@
   <link href="css/mystyle.css" rel="stylesheet">
 
   <link rel="stylesheet" type="text/css" href="css/jquery.toast.css" />
+
+  <div id="serverIP">{{serverIP}}</div>
+  <div id="redirect">{{indexPage}}{{extension}}</div>
 </head>
 
 <body class="bg-gradient-primary">
-
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-xl-6 col-lg-8 col-md-6">
@@ -38,7 +40,7 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Ustvarite uporabniški račun!</h1>
                   </div>
-                  <form class="user" action="/register" method="POST">
+                  <form class="user" action="{{serverIP}}/{{registerPage}}" method="POST">
                     <!--div class="form-group" style="text-align: center">
                       <div class="justify-content-center">
                         <img src="img/user.png" style="width:100px;margin:40px;" />
@@ -79,7 +81,7 @@
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="small" href="/login">Vpiši se v svoj uporabniški račun!</a>
+                    <a class="small" href="{{loginPage}}{{extension}}">Vpiši se v svoj uporabniški račun!</a>
                   </div>
                 </div>
               </div>

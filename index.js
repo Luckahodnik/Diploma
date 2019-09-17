@@ -42,10 +42,25 @@ const port = 3000;
 exceptionHandler.handle();
 
 // =============================================================================
+// Initialize handlebars data ==================================================
+// =============================================================================
+const handlebarsData = {
+    serverIP : "",
+    loginPage : "login",
+    registerPage : "register",
+    indexPage : "",
+    vecPage : "vec",
+    nfcPage : "nfc",
+    extension : "",
+    logoutPath : "/logout",
+    logoutMethod : "POST"
+}
+
+// =============================================================================
 // Require handlers and routes =================================================
 // =============================================================================
-const handlers = require('./app/handlers.js')(app, express, db);
-require('./app/routes.js')(app, express, handlers);
+const handlers = require('./app/handlers.js')(app, express, db, handlebarsData);
+require('./app/routes.js')(app, express, handlers, handlebarsData);
 
 // =============================================================================
 // Initialize sequelize database connection ====================================

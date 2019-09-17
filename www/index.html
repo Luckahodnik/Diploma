@@ -35,6 +35,9 @@
 
   <link rel="stylesheet" type="text/css" href="css/cookieconsent.min.css" />
   <link rel="stylesheet" type="text/css" href="css/jquery.toast.css" />
+
+  <div id="serverIP">{{serverIP}}</div>
+  <div id="redirect">{{loginPage}}{{extension}}</div>
 </head>
 
 <body id="page-top">
@@ -104,7 +107,7 @@
           for="sidebar-checkbox"></label>
       </div>
       <div style="position: absolute; bottom: 20px; left:20px;">
-        <a href="vec.html">
+        <a href="{{vecPage}}{{extension}}">
           <i class="fas fa-info-circle" style="color:rgba(255, 255, 255, 0.8);"></i>
         </a>
       </div>
@@ -203,7 +206,7 @@
           <div class="row">
             <div class="col-sm">
               <div class="card shadow mb-4">
-                <a href="register.html" style="text-align: center">
+                <a href="{{registerPage}}{{extension}}" style="text-align: center">
                   <img class="ikone" src="img/password.svg" />
                   <p id="ikone_naslov">1. Registrirajte in vpišite se</p>
                 </a>
@@ -211,7 +214,7 @@
             </div>
             <div class="col-sm">
               <div class="card shadow mb-4" style="text-align: center">
-                <a href="nfc.html" style="text-align: center">
+                <a href="{{nfcPage}}{{extension}}" style="text-align: center">
                   <img class="ikone" src="img/terminal.svg" />
                   <p id="ikone_naslov">2. Prislonite telefon na terminal</p>
                 </a>
@@ -470,7 +473,7 @@
                 </a>
               </li>
               <li>
-                <a class="gumb" href="nfc.html">
+                <a class="gumb" href="{{nfcPage}}{{extension}}">
                   <i class="fas fa-mobile-alt my-float"></i>
                 </a>
               </li>
@@ -495,7 +498,7 @@
           <div class="modal-body">Kliknite izpis, da se izpišete iz svojega uporabniškega računa</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Prekliči</button>
-            <form action="/logout" method="POST">
+            <form action="{{logoutPath}}" method="{{logoutMethod}}">
               <button class="btn btn-primary" type="submit">Izpis</button>
             </form>
           </div>
@@ -540,7 +543,7 @@
         "message": "Spletna stran uporablja piškotke, ki hranijo podatke za lažjo uporabo.",
         "dismiss": "Strinjam se z uporabo.",
         "link": "Več",
-        "href": "/vec.html"
+        "href": "{{vecPage}}{{extension}}"
       }
     });
   </script>

@@ -1,8 +1,10 @@
+//let serverIP = "";
 var app = {
    /*
       Application constructor
    */
        initialize: function() {
+         //serverIP = $("#serverIP").html();
          this.bindEvents();
          console.log("Starting NDEF Events app");
       },
@@ -185,14 +187,39 @@ var app = {
                Object.keys(contents.files).forEach(function(filename) {
                   zip.file(filename).async("string").then(function(content) {
                      // FILE
-                     
+
                      app.display("Ime datoteke: " + filename);
                      app.display(" ");
                      objXML = processXML(content);
-                     app.display("Ime izdajatelja: " + objXML.name);
+                     app.display("Ime izdajatelja: " + objXML.ime);
                      app.display("Datum: " + (objXML.datum).toLocaleString());
                      app.display("Znesek: " + objXML.znesek + "€");
                      app.display("DDV: " + objXML.ddv + "€");
+
+                     var formData = new FormData();
+                     formData.set('raw_xml_data', new Blob([content], {'type' : 'text/xml'}), filename);
+                     $.ajax( {'url': serverIP.innerHTML + "/xmls", method: "POST", 'data' : formData,
+                        processData: false, contentType: false
+                     }).done( (racun) => {
+                        $.toast({
+                           heading: 'Izvedeno',
+                           text: 'Datoteka je bila uspešno naložena',
+                           showHideTransition: 'slide',
+                           icon: 'success'
+                        });
+                        setTimeout( () => {
+                           window.location.replace(redirectPage.innerHTML);
+                        }, 5000);
+
+                     })
+                     .fail( (err) => {
+                        $.toast({
+                           heading: 'Opozorilo',
+                           text: err.responseText,
+                           showHideTransition: 'slide',
+                           icon: 'warning'
+                        })
+                     });
                   });
               });
            });
