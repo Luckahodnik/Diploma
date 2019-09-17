@@ -12,27 +12,41 @@ $( document ).ready(function() {
         let postObject = {};
         inputs.each(function( index ) {
             if($(this).attr('type') == 'file'){
-                postObject[$(this).attr('id')] = $(this)[0].files[0];
+                postObject[$(this).attr('name')] = $(this)[0].files[0];
             } 
             else if($(this).attr('type') == 'checkbox'){
-                postObject[$(this).attr('id')] = $(this).prop('checked');
+                postObject[$(this).attr('name')] = $(this).prop('checked');
             } else {
-                postObject[$(this).attr('id')] = $(this).val();
+                postObject[$(this).attr('name')] = $(this).val();
             }
         });
-        var form_data = new FormData();
+        var formData = new FormData();
         for ( var key in postObject ) {
-            form_data.append(key, postObject[key]);
+            formData.append(key, postObject[key]);
         }
         $.ajax({
             method: method,
             url: action,
-            data: form_data,
+            data: formData,
             processData: false, 
             contentType: false
         })
-        .done(function( msg ) {
-            alert( "Data Saved: " + msg );
+        .done( ( msg, textStatus, xhr ) => {
+            $.toast({
+                heading: 'Information',
+                text: 'Login successful',
+                showHideTransition: 'slide',
+                icon: 'info'
+            });
+            window.location.replace($('#redirect').html());
+        })
+        .fail( (err) => {
+            $.toast({
+                heading: 'Warning',
+                text: err.responseText,
+                showHideTransition: 'slide',
+                icon: 'warning'
+            })
         });
     });
 

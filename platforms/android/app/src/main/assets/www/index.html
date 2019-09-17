@@ -34,6 +34,10 @@
   <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
   <link rel="stylesheet" type="text/css" href="css/cookieconsent.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/jquery.toast.css" />
+
+  <div id="serverIP">http://10.42.0.1:3000</div>
+  <div id="redirect">login.html</div>
 </head>
 
 <body id="page-top">
@@ -371,49 +375,27 @@
                   <div id="prostor"></div>
               <thead>
                 <tr>
+                  <th>Id racuna</th>
+                  <th>Ime dokumenta</th>
                   <th>Ime izdajatelja</th>
                   <th>Celoten znesek računa</th>
                   <th>DDV</th>
                   <th>Datum izdatka</th>
                   <th></th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                    <td>ZZI d.o.o.</td>
-                    <td>1435</td>
-                    <td>258</td>
-                    <td>12/03/2018</td>
-                    <td><input type="button" value="X" onclick="deleteRow(this)"></td>
-                  </tr>
-                  <tr>
-                    <td>GEN-I, d.o.o.</td>
-                    <td>112</td>
-                    <td>20</td>
-                    <td>11/05/2018</td>
-                    <td><input type="button" value="X" onclick="deleteRow(this)"></td>
-                  </tr>
-                  <tr>
-                    <td>Družba Vodovod, d.o.o.</td>
-                    <td>24</td>
-                    <td>2</td>
-                    <td>30/11/2017</td>
-                    <td><input type="button" value="X" onclick="deleteRow(this)"></td>
-                  </tr>
-                  <tr>
-                    <td>SellerCompany</td>
-                    <td>2337</td>
-                    <td>675</td>
-                    <td>10/04/2013</td>
-                    <td><input type="button" value="X" onclick="deleteRow(this)"></td>
-                </tr>
               </tbody>
               <tfoot>
                 <tr>
+                  <th>Id racuna</th>
+                  <th>Ime dokumenta</th>
                   <th>Ime izdajatelja</th>
                   <th>Celoten znesek računa</th>
                   <th>DDV</th>
                   <th>Datum izdatka</th>
+                  <th></th>
                   <th></th>
                 </tr>
               </tfoot>
@@ -457,7 +439,7 @@
                   </div>
                   <div class="form-group">
                     <label for="inputEmail" class="control-label">Datum izdatka</label>
-                    <input type="date" id="datum" class="form-control" data-error="Prosim vnesite znesek DDV" required>
+                    <input type="date" id="datum" class="form-control" data-error="Prosim vnesite datum" required>
                     <div class="help-block with-errors"></div>
                   </div>
 
@@ -516,7 +498,7 @@
           <div class="modal-body">Kliknite izpis, da se izpišete iz svojega uporabniškega računa</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Prekliči</button>
-            <form action="/logout" method="POST">
+            <form action="login.html" method="GET">
               <button class="btn btn-primary" type="submit">Izpis</button>
             </form>
           </div>
@@ -526,7 +508,9 @@
   </div>
   <script src="cordova.js"></script>
   <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.js"></script>
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="js/jquery.toast.js"></script>
+  <script src="cordova.js"></script>
   <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="js/index.js"></script>
   <!-- Core plugin JavaScript-->
@@ -559,7 +543,7 @@
         "message": "Spletna stran uporablja piškotke, ki hranijo podatke za lažjo uporabo.",
         "dismiss": "Strinjam se z uporabo.",
         "link": "Več",
-        "href": "/vec.html"
+        "href": "vec.html"
       }
     });
   </script>

@@ -13,9 +13,12 @@
    <link href="css/mystyle.css" rel="stylesheet">
    <link href="css/nfc.css" rel="stylesheet">
    <link rel="shortcut icon" type="image/png" href="img/logo.svg" />
+
 </head>
 
 <body>
+   <div id="serverIP">http://10.42.0.1:3000</div>
+   <div id="redirectPage">index.html</div>
    <div class="container mobil">
       <div class="row justify-content-center bg-login-image ">
          <div class="col-xl-6 col-lg-8 col-md-6">
@@ -40,6 +43,12 @@
       </div>
    </div>
 
+
+   <!-- Bootstrap core JavaScript-->
+   <script src="vendor/jquery/jquery.min.js"></script>
+   <script src="js/jquery.toast.js"></script>
+   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
    <script type="text/javascript" src="cordova.js"></script>
    <script type="text/javascript" src="js/jszip.min.js"></script>
    <script type="text/javascript" src="js/utils.js"></script>
@@ -47,10 +56,7 @@
    <script type="text/javascript">
       app.initialize();
    </script>
-   <!-- Bootstrap core JavaScript-->
-   <script src="vendor/jquery/jquery.min.js"></script>
-   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+   
    <!-- Core plugin JavaScript-->
    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 

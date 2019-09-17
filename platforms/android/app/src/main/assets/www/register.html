@@ -21,10 +21,13 @@
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/mystyle.css" rel="stylesheet">
 
+  <link rel="stylesheet" type="text/css" href="css/jquery.toast.css" />
+
+  <div id="serverIP">http://10.42.0.1:3000</div>
+  <div id="redirect">index.html</div>
 </head>
 
 <body class="bg-gradient-primary">
-
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-xl-6 col-lg-8 col-md-6">
@@ -37,7 +40,7 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Ustvarite uporabniški račun!</h1>
                   </div>
-                  <form class="user" action="/register" method="POST">
+                  <form class="user" action="http://10.42.0.1:3000/register" method="POST">
                     <!--div class="form-group" style="text-align: center">
                       <div class="justify-content-center">
                         <img src="img/user.png" style="width:100px;margin:40px;" />
@@ -70,7 +73,7 @@
                       </div>
                     </div>
 
-                    <input class="btn btn-primary btn-user btn-block" type="submit" value="Vpis" />
+                    <input class="btn btn-primary btn-user btn-block" id="registracija" type="submit" value="Registracija" />
                     <!--a href="/" class="btn btn-primary btn-user btn-block" id="registracija">
                         Registrirajte račun
                       </a-->
@@ -78,7 +81,7 @@
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="small" href="/login">Vpiši se v svoj uporabniški račun!</a>
+                    <a class="small" href="login.html">Vpiši se v svoj uporabniški račun!</a>
                   </div>
                 </div>
               </div>
@@ -91,13 +94,14 @@
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="js/jquery.toast.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <!--script src="js/register.js"></script-->
+  <script src="js/register.js"></script>
 
 </body>
 

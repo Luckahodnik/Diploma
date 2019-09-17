@@ -5,8 +5,8 @@ var chart = null;
 
 let serverIP = "";
 
-let deleteEl = '<td><input type="button" value="X" onclick="deleteRow(this)"></td>';
-let downloadEl = '<td><form method="GET" action="%SERVER_IP%/xmls/%ACTION%"><button type="submit">Prenos</button></form></td>';
+let deleteEl = '<td><input type="button" class="btn btn-outline-danger" style="margin-left:20px; margin-right:20px;" value="X" onclick="deleteRow(this)"></td>';
+let downloadEl = '<td><form method="GET" action="%SERVER_IP%/xmls/%ACTION%"><button style="margin-left:20px; margin-right:20px;" class="btn btn-outline-primary "type="submit">Prenos</button></form></td>';
 
 function deleteRow(r) {
 	let dataTable = $('#dataTable').DataTable();

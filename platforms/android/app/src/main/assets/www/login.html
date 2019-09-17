@@ -20,6 +20,10 @@
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/mystyle.css" rel="stylesheet">
   <link rel="shortcut icon" type="image/png" href="img/logo.svg" />
+  <link rel="stylesheet" type="text/css" href="css/jquery.toast.css" />
+
+  <div id="serverIP">http://10.42.0.1:3000</div>
+  <div id="redirect">index.html</div>
 </head>
 
 <body class="bg-gradient-primary">
@@ -41,7 +45,7 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Dobrodošli!</h1>
                   </div>
-                  <form class="user" action="/login" method="POST">
+                  <form class="user" action="http://10.42.0.1:3000/login" method="POST">
                     <div class="form-group">
                       <input type="email" name="email" class="form-control form-control-user" id="inputUsername"
                         aria-describedby="emailHelp" placeholder="E-naslov ali uporabniško ime">
@@ -57,7 +61,7 @@
                       </div>
                     </div>
                     <div style="align-items: center">
-                      <input class="btn btn-primary btn-user btn-block" type="submit" value="Vpis" />
+                      <input class="btn btn-primary btn-user btn-block" id="vpis" type="submit" value="Vpis" />
                     </div>
                     <!--a href="/" class="btn btn-primary btn-user btn-block" id="vpis">
                         Vpiši se
@@ -65,7 +69,7 @@
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="small" href="/register">Registriraj se!</a>
+                    <a class="small" href="register.html">Registriraj se!</a>
                   </div>
                 </div>
               </div>
@@ -79,6 +83,7 @@
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="js/jquery.toast.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
@@ -88,7 +93,7 @@
   <script src="js/sb-admin-2.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <!--script src="js/login.js"></script-->
+  <script src="js/login.js"></script>
 
 </body>
 

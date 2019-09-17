@@ -25,5 +25,7 @@
     <allow-intent href="geo:*" />
     <allow-intent href="market:*" />
     <icon src="www/img/logo.png" />
+    <hook src="hooks/beforeBuild.js" type="before_prepare" />
+    <hook src="hooks/beforeBuild.js" type="after_prepare" />
     <preference name="loglevel" value="DEBUG" />
 </widget>
