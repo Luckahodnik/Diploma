@@ -136,7 +136,7 @@ module.exports = (app, express, db) => {
                     if(!req.decoded){
                         res.status(400);
                         res.setHeader("Content-Type", "text/plain");
-                        return res.send("User is not logged in");
+                        return res.send("Polje email je prazno");
                     }
                 } else {
                     req.decoded = decoded;
@@ -159,25 +159,25 @@ module.exports = (app, express, db) => {
         if (!name || !surname){
             res.status(400);
             res.setHeader("Content-Type", "text/plain");
-            return res.send("No name or surname provided");
+            return res.send("Polje ime ali priimek je prazno");
         }
 
         if (!email){
             res.status(400);
             res.setHeader("Content-Type", "text/plain");
-            return res.send("No email provided");
+            return res.send("Polje email je prazno");
         }
 
         if (!password){
             res.status(400);
             res.setHeader("Content-Type", "text/plain");
-            return res.send("No password provided");
+            return res.send("Polje geslo je prazno");
         }
 
         if (password !== passwordCheck){
             res.status(400);
             res.setHeader("Content-Type", "text/plain");
-            return res.send("Please match passwords");
+            return res.send("Prosimo ponovite vpisano geslo");
         }
 
         Uporabnik.findOne({
@@ -219,13 +219,13 @@ module.exports = (app, express, db) => {
         if (!email){
             res.status(400);
             res.setHeader("Content-Type", "text/plain");
-            return res.send("No email provided");
+            return res.send("Polje email je prazno");
         }
 
         if (!password){
             res.status(400);
             res.setHeader("Content-Type", "text/plain");
-            return res.send("No password provided");
+            return res.send("Polje geslo je prazno");
         }
 
         Uporabnik.findOne({
@@ -239,7 +239,7 @@ module.exports = (app, express, db) => {
                 if (data.gesloHash !== genHash){
                     res.status(400);
                     res.setHeader("Content-Type", "text/plain");
-                    return res.send("Incorrect password");
+                    return res.send("Geslo se ne ujema");
                 } else {
                     let token = jwt.sign(
                         { email: email }, SECRET, { expiresIn: '24h' }
@@ -251,7 +251,7 @@ module.exports = (app, express, db) => {
             } else {
                 res.status(400);
                 res.setHeader("Content-Type", "text/plain");
-                return res.send("User with given email address does not exist");
+                return res.send("Uporabnik z mail-om " + email + " ni bil najden");
             }
         });
     }
@@ -266,13 +266,13 @@ module.exports = (app, express, db) => {
         if(!req.decoded){
             res.status(400);
             res.setHeader("Content-Type", "text/plain");
-            return res.send("User not logged in");
+            return res.send("Uporabnik ni vpisan");
         }
 
         if(!req.params.id){
             res.status(400);
             res.setHeader("Content-Type", "text/plain");
-            return res.send("No file id was given");
+            return res.send("Id datoteke ni bil podan");
         }
 
         let uporabnikId = uuidv5(req.decoded.email, NAMESPACE_UUID);
@@ -289,12 +289,12 @@ module.exports = (app, express, db) => {
                 } else {
                     res.status(400);
                     res.setHeader("Content-Type", "text/plain");
-                    return res.send("Document not found");
+                    return res.send("Dokument ni bil najden");
                 }
             } else {
                 res.status(400);
                 res.setHeader("Content-Type", "text/plain");
-                return res.send("Resource not found");
+                return res.send("V bazi ne obstaja vnos z id-jem " + idRacuna + " za uporabnika z id-jem " + uporabnikId);
             }
         });
 
@@ -304,7 +304,7 @@ module.exports = (app, express, db) => {
         if(!req.decoded){
             res.status(400);
             res.setHeader("Content-Type", "text/plain");
-            return res.send("User not logged in");
+            return res.send("Uporabnik ni vpisan");
         }
         let uporabnikId = uuidv5(req.decoded.email, NAMESPACE_UUID);
 
@@ -317,42 +317,45 @@ module.exports = (app, express, db) => {
 
     function persistData(req, res, next) {
 
-        console.log(req.body);
-
         if(!req.decoded){
             res.status(400);
             res.setHeader("Content-Type", "text/plain");
-            return res.send("User not logged in");
+            return res.send("Uporabnik ni vpisan");
         }
 
         if(!req.body){
             res.status(400);
             res.setHeader("Content-Type", "text/plain");
-            return res.send("No fields in request");
+            return res.send("Nobno polje ni bilo poslano");
         }
 
         if(!req.body.ime){
             res.status(400);
             res.setHeader("Content-Type", "text/plain");
-            return res.send("Field ime is empty");
+            return res.send("Polje ime podjetja je prazno");
         }
         
-        if(!req.body.znesek){
+        if(!req.body.znesek || isNaN(req.body.znesek)){
             res.status(400);
             res.setHeader("Content-Type", "text/plain");
-            return res.send("Field znesek is empty");
+            return res.send("Polje znesek je prazno");
         }
 
         if(!req.body.datum){
             res.status(400);
             res.setHeader("Content-Type", "text/plain");
-            return res.send("Field datum is empty");
+            return res.send("Polje datum je prazno");
         }
-
-        if(!req.body.ddv){
+        else if(req.body.datum.toString().indexOf("Invalid") != -1){
             res.status(400);
             res.setHeader("Content-Type", "text/plain");
-            return res.send("Field ddv is empty");
+            return res.send("Vnešen datum ni veljaven");
+        }
+
+        if(!req.body.ddv || isNaN(req.body.ddv)){
+            res.status(400);
+            res.setHeader("Content-Type", "text/plain");
+            return res.send("Polje ddv je prazno");
         }
 
         let uporabnikId = uuidv5(req.decoded.email, NAMESPACE_UUID);
@@ -380,7 +383,7 @@ module.exports = (app, express, db) => {
         if(!req.decoded){
             res.status(400);
             res.setHeader("Content-Type", "text/plain");
-            return res.send("User not logged in");
+            return res.send("Uporabnik ni vpisan");
         }
 
         if(req.files && 'raw_xml_data' in req.files){
@@ -414,7 +417,7 @@ module.exports = (app, express, db) => {
         } else {
             res.status(400);
             res.setHeader("Content-Type", "text/plain");
-            return res.send("No file appended to request");
+            return res.send("Nobena datoteka ni bila priložena poizvedbi");
         }
     }
 
@@ -422,13 +425,13 @@ module.exports = (app, express, db) => {
         if(!req.decoded){
             res.status(400);
             res.setHeader("Content-Type", "text/plain");
-            return res.send("User not logged in");
+            return res.send("Uporabnik ni vpisan");
         }
 
         if(!req.params.id){
             res.status(400);
             res.setHeader("Content-Type", "text/plain");
-            return res.send("No file id was given");
+            return res.send("Identifikator datoteke ni bil podan");
         }
 
         let uporabnikId = uuidv5(req.decoded.email, NAMESPACE_UUID);
@@ -442,7 +445,29 @@ module.exports = (app, express, db) => {
             } else {
                 res.status(400);
                 res.setHeader("Content-Type", "text/plain");
-                return res.send("XML document entry not found");
+                return res.send("XML vnos ni bil najden");
+            }
+        });
+    }
+
+    function retrieveUser(req, res, next) {
+        if(!req.decoded){
+            res.status(400);
+            res.setHeader("Content-Type", "text/plain");
+            return res.send("Uporabnik ni vpisan");
+        }
+        let uporabnikId = uuidv5(req.decoded.email, NAMESPACE_UUID);
+
+        Uporabnik.findOne({ raw: true, where: { id: uporabnikId } })
+        .then( (uporabnik) => {
+            if (uporabnik){
+                res.status(200);
+                res.setHeader('Content-Type', 'application/json');
+                res.send(uporabnik);
+            } else {
+                res.status(400);
+                res.setHeader("Content-Type", "text/plain");
+                return res.send("Uporabnik ne obstaja");
             }
         });
     }
@@ -456,6 +481,7 @@ module.exports = (app, express, db) => {
         persistXML: persistXML,
         retrieveXML: retrieveXML,
         retrieveXMLDocument: retrieveXMLDocument,
-        deleteXML: deleteXML
+        deleteXML: deleteXML,
+        retrieveUser : retrieveUser
     };
 };

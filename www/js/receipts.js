@@ -4,7 +4,7 @@ let podatki = {};
 var chart = null;
 
 let deleteEl = '<td><input type="button" value="X" onclick="deleteRow(this)"></td>';
-let downloadEl = '<td><form method="get" action="/xmls/%ACTION%"><button type="submit">Download</button></form></td>';
+let downloadEl = '<td><form method="get" action="/xmls/%ACTION%"><button type="submit"> Prenos </button></form></td>';
 
 function deleteRow(r) {
 	let dataTable = $('#dataTable').DataTable();
@@ -15,8 +15,8 @@ function deleteRow(r) {
 	.done( () => {
 		row.remove();
 		$.toast({
-			heading: 'Information',
-			text: 'File removed successfully',
+			heading: 'Obvestilo',
+			text: 'Vnos je bil uspešno odstranjen',
 			showHideTransition: 'slide',
 			icon: 'info'
 		});
@@ -26,7 +26,7 @@ function deleteRow(r) {
 	})
 	.fail( (err) => {
 		$.toast({
-			heading: 'Error',
+			heading: 'Napaka',
 			text: err.responseText,
 			showHideTransition: 'slide',
 			icon: 'error'
@@ -61,8 +61,9 @@ $(document).ready(function () {
 	.done( (data) => {
 		if(data && data.length){
 			data.forEach( (racun, index, arr) => {
+				let downloadElSpec = racun.XMLName? downloadEl.replace('%ACTION%', racun.idRacuna) : null;
 				dataTable.row.add( [racun.idRacuna, racun.XMLName, racun.izdajateljRacuna, racun.znesek, racun.ddv, racun.datum, 
-					deleteEl, racun.XMLName? downloadEl.replace('%ACTION%', racun.idRacuna) : null] );
+					downloadElSpec, deleteEl ] );
 				podatki[racun.idRacuna] = racun;
 			});
 			aggregateByMonths();
@@ -71,10 +72,23 @@ $(document).ready(function () {
 	})
 	.fail( (err) => {
 		$.toast({
-			heading: 'Warning',
+			heading: 'Opozorilo',
 			text: err.responseText,
 			showHideTransition: 'slide',
 			icon: 'warning'
+		})
+	});
+
+	$.ajax( {'url': "/users", method: "GET"})
+	.done( (user) => {
+		$('#userDropdown>span').html(user.ime + " " + user.priimek);
+	})
+	.fail( (err) => {
+		$.toast({
+			heading: 'Napaka',
+			text: err.responseText,
+			showHideTransition: 'slide',
+			icon: 'error'
 		})
 	});
 });
@@ -113,20 +127,20 @@ function fileSelector() {
 					}).done( (racun) => {
 						let dataTable = $('#dataTable').DataTable();
 						dataTable.row.add( [racun.idRacuna, racun.XMLName, racun.izdajateljRacuna, racun.znesek, racun.ddv, racun.datum, 
-							deleteEl, downloadEl.replace('%ACTION%', racun.idRacuna)] );
+							downloadEl.replace('%ACTION%', racun.idRacuna), deleteEl] );
 						dataTable.draw();
 						podatki[racun.idRacuna] = racun;
 						aggregateByMonths();
 						$.toast({
-							heading: 'Success',
-							text: 'File uploaded successfully',
+							heading: 'Izvedeno',
+							text: 'Datoteka je bila uspešno naložena',
 							showHideTransition: 'slide',
 							icon: 'success'
 						});
 					})
 					.fail( (err) => {
 						$.toast({
-							heading: 'Warning',
+							heading: 'Opozorilo',
 							text: err.responseText,
 							showHideTransition: 'slide',
 							icon: 'warning'
@@ -184,21 +198,21 @@ function updateTable() {
 		}).done( (racun) => {
 			let dataTable = $('#dataTable').DataTable();
 			dataTable.row.add( [racun.idRacuna, null, racun.izdajateljRacuna, racun.znesek, racun.ddv, racun.datum, 
-				deleteEl, null] );
+				null, deleteEl] );
 			dataTable.draw();
 			podatki[racun.idRacuna] = racun;
 			console.log(racun);
 			aggregateByMonths();
 			$.toast({
-				heading: 'Success',
-				text: 'Racun sent successfully',
+				heading: 'Izvedeno',
+				text: 'Račun uspešno poslan',
 				showHideTransition: 'slide',
 				icon: 'success'
 			});
 		})
 		.fail( (err) => {
 			$.toast({
-				heading: 'Warning',
+				heading: 'Opozorilo',
 				text: err.responseText,
 				showHideTransition: 'slide',
 				icon: 'warning'
